@@ -1,0 +1,162 @@
+[gd_scene load_steps=5 format=3 uid="uid://rx2yw1d1iyk0"]
+
+[ext_resource type="Texture2D" uid="uid://ckc3q7cdf0e6b" path="res://Assets/icons/mantitshead.png" id="1_0kur8"]
+[ext_resource type="Script" path="res://Inventories/shop_inventories/headselling/head_selling_ui.gd" id="1_ejqp1"]
+[ext_resource type="Texture2D" uid="uid://bcqty4m3gg3ol" path="res://Assets/icons/100head.png" id="2_mis30"]
+[ext_resource type="Texture2D" uid="uid://cg2rffivi26ic" path="res://Assets/characters/enemies/chrobus_head.png" id="4_0ken1"]
+
+[node name="head_selling_ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ejqp1")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.218
+anchor_top = 0.154
+anchor_right = 0.775
+anchor_bottom = 0.886
+offset_left = -0.136017
+offset_top = 0.207993
+offset_right = 0.199951
+offset_bottom = -0.128052
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 15
+
+[node name="headtypes2" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 35
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/headtypes2"]
+layout_mode = 2
+text = "1/10"
+
+[node name="Label2" type="Label" parent="PanelContainer/HBoxContainer/headtypes2"]
+layout_mode = 2
+text = "1/20"
+
+[node name="Label3" type="Label" parent="PanelContainer/HBoxContainer/headtypes2"]
+layout_mode = 2
+text = "1/30"
+
+[node name="Label4" type="Label" parent="PanelContainer/HBoxContainer/headtypes2"]
+layout_mode = 2
+text = "1/50"
+
+[node name="headtypes" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/HBoxContainer/headtypes"]
+layout_mode = 2
+texture = ExtResource("1_0kur8")
+
+[node name="TextureRect3" type="TextureRect" parent="PanelContainer/HBoxContainer/headtypes"]
+layout_mode = 2
+texture = ExtResource("2_mis30")
+
+[node name="TextureRect2" type="TextureRect" parent="PanelContainer/HBoxContainer/headtypes"]
+self_modulate = Color(1, 0.027451, 0, 1)
+layout_mode = 2
+texture = ExtResource("1_0kur8")
+
+[node name="TextureRect4" type="TextureRect" parent="PanelContainer/HBoxContainer/headtypes"]
+layout_mode = 2
+texture = ExtResource("4_0ken1")
+
+[node name="sell_buttons5" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 25
+
+[node name="mantis5" type="Button" parent="PanelContainer/HBoxContainer/sell_buttons5"]
+layout_mode = 2
+text = "Sell 5"
+
+[node name="hundred5" type="Button" parent="PanelContainer/HBoxContainer/sell_buttons5"]
+layout_mode = 2
+text = "Sell 5"
+
+[node name="mantisred5" type="Button" parent="PanelContainer/HBoxContainer/sell_buttons5"]
+layout_mode = 2
+text = "Sell 5"
+
+[node name="chrobus5" type="Button" parent="PanelContainer/HBoxContainer/sell_buttons5"]
+layout_mode = 2
+text = "Sell 5"
+
+[node name="sell_buttons1" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 25
+
+[node name="mantis1" type="Button" parent="PanelContainer/HBoxContainer/sell_buttons1"]
+layout_mode = 2
+text = "Sell 1"
+
+[node name="hundred1" type="Button" parent="PanelContainer/HBoxContainer/sell_buttons1"]
+layout_mode = 2
+text = "Sell 1"
+
+[node name="mantisred1" type="Button" parent="PanelContainer/HBoxContainer/sell_buttons1"]
+layout_mode = 2
+text = "Sell 1"
+
+[node name="chrobus1" type="Button" parent="PanelContainer/HBoxContainer/sell_buttons1"]
+layout_mode = 2
+text = "Sell 1"
+
+[node name="headtypes3" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 35
+
+[node name="mantis" type="Label" parent="PanelContainer/HBoxContainer/headtypes3"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1/10"
+
+[node name="hundred" type="Label" parent="PanelContainer/HBoxContainer/headtypes3"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1/20"
+
+[node name="mantisred" type="Label" parent="PanelContainer/HBoxContainer/headtypes3"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1/30"
+
+[node name="chrobus" type="Label" parent="PanelContainer/HBoxContainer/headtypes3"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1/50"
+
+[node name="exit" type="Button" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "X"
+
+[connection signal="pressed" from="PanelContainer/HBoxContainer/sell_buttons5/mantis5" to="." method="_on_mantis_5_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/sell_buttons5/hundred5" to="." method="_on_hundred_5_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/sell_buttons5/mantisred5" to="." method="_on_mantisred_5_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/sell_buttons5/chrobus5" to="." method="_on_chrobus_5_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/sell_buttons1/mantis1" to="." method="_on_mantis_1_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/sell_buttons1/hundred1" to="." method="_on_hundred_1_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/sell_buttons1/mantisred1" to="." method="_on_mantisred_1_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/sell_buttons1/chrobus1" to="." method="_on_chrobus_1_pressed"]
+[connection signal="pressed" from="PanelContainer/exit" to="." method="_on_exit_pressed"]

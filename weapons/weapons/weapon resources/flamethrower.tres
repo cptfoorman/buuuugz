@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://dumfd5n3w7hxl"]
+
+[ext_resource type="Texture2D" uid="uid://c44j0anyr8f67" path="res://Assets/icons/flamenwerfer ico.png" id="1_tnp8v"]
+[ext_resource type="PackedScene" uid="uid://c1gnj0q12sywb" path="res://weapons/weapons/scenes/flamethrower.tscn" id="2_jjhr7"]
+[ext_resource type="Script" path="res://Inventories/scripts/Item.gd" id="3_juxrm"]
+
+[resource]
+script = ExtResource("3_juxrm")
+item_name = "Flamethrower"
+item_scene = ExtResource("2_jjhr7")
+item_icon = ExtResource("1_tnp8v")
+amount = 0
+stackable = false
+item_type = 0
+item_value = 1000
+is_c4 = false
+description = "gives fire damage over time, can destroy bugholes"

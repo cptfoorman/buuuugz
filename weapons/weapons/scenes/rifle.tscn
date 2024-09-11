@@ -1,0 +1,329 @@
+[gd_scene load_steps=16 format=3 uid="uid://bgrrr4p8kcqlm"]
+
+[ext_resource type="Script" path="res://weapons/weapons/scripts/rifle.gd" id="1_ia1oe"]
+[ext_resource type="PackedScene" uid="uid://clco5q2t5kr5" path="res://weapons/Bullets/scenes/bullet_balistic.tscn" id="2_nqjlw"]
+[ext_resource type="Texture2D" uid="uid://cnkuv4qjpndsm" path="res://Assets/weapons/newweaponsprites/akmag.png" id="3_dxpw5"]
+[ext_resource type="Texture2D" uid="uid://c7ujr6xa6762i" path="res://Assets/weapons/flashes/ball_weapon_muzzle flash.png" id="3_ubve0"]
+[ext_resource type="AudioStream" uid="uid://do1plniq54o6c" path="res://Assets/weapons/sfx/balistic shot.mp3" id="4_1uwg2"]
+[ext_resource type="Texture2D" uid="uid://do0h10gpbg10y" path="res://Assets/weapons/newweaponsprites/aknomag.png" id="5_v1kmw"]
+[ext_resource type="Script" path="res://Components/Scripts/cam_shake_area.gd" id="6_85r44"]
+[ext_resource type="AudioStream" uid="uid://bd7cqy1nbubhj" path="res://Assets/weapons/sfx/reloads/rifles.mp3" id="6_f3jxp"]
+[ext_resource type="Texture2D" uid="uid://sdhesksdbuak" path="res://Assets/weapons/mags/mag_back_assaulut.png" id="7_nj6yv"]
+[ext_resource type="Texture2D" uid="uid://cdchtiayfiqlx" path="res://Assets/weapons/mags/mag_assaulut.png" id="8_wt6xv"]
+[ext_resource type="Texture2D" uid="uid://brh0nr23hsooo" path="res://Assets/weapons/newweaponsprites/pielothand.png" id="12_v4wwm"]
+[ext_resource type="Texture2D" uid="uid://bkn3yy1js4iaj" path="res://Assets/weapons/newweaponsprites/pielothandright.png" id="13_aobdy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mpno6"]
+
+[sub_resource type="Animation" id="Animation_1b1fv"]
+resource_name = "reload"
+length = 1.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Akmag:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.06667, 1.13333, 1.4, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(13, 1), Vector2(13, 1), Vector2(13, 4), Vector2(34, 15), Vector2(13, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Akmag:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.03333, 1.13333, 1.4, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, -0.502655, 1.84307, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Akmag2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.466667, 0.566667, 1, 1.06667, 1.2, 1.4, 1.66667, 1.73333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-6, -4), Vector2(-6, -4), Vector2(-10, -8), Vector2(13, 3), Vector2(14, 2), Vector2(18, 4), Vector2(13, 1), Vector2(13, 1), Vector2(-6, -4)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Akmag2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.466667, 0.566667, 1, 1.06667, 1.2, 1.33333, 1.66667, 1.73333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0, 0.753982, 0.753982, 1.50796, -0.0366519, -0.0366519, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Akmag:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.06667, 1.36667, 1.63333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Akmag:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.4, 1.66667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Akmag2:self_modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Akmag2:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.566667, 1.66667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Pielothand:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(6, 6)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Pielothand:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.47822]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Pielothandright:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.6, 1, 1.06667, 1.23333, 1.3, 1.43333, 1.56667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(23, 4), Vector2(-9, -2), Vector2(10, 11), Vector2(11, 9), Vector2(11, 9), Vector2(21, 12), Vector2(15, 9), Vector2(22, 4)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Pielothandright:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.6, 1, 1.06667, 1.3, 1.46667, 1.56667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-1.5708, -0.172788, -0.172788, 0.310669, -0.736529, -0.736529, -1.5708]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Akmag2:z_index")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(1.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("AudioStreamPlayer2:playing")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ly36l"]
+_data = {
+"reload": SubResource("Animation_1b1fv")
+}
+
+[node name="Rifle" type="Node2D" node_paths=PackedStringArray("cam_shake", "recoil_timer", "shot_timer", "shot_sound", "bullet_spawn_marker", "mag_bar", "reload_sound", "sprite", "muzzle_flash")]
+script = ExtResource("1_ia1oe")
+cam_shake = NodePath("CamShakeArea")
+recoil_top = 0.1
+recoil_timer = NodePath("Timer2")
+recoil_str = 0.01
+shot_timer = NodePath("Timer")
+bullet = ExtResource("2_nqjlw")
+bullet_speed = 650.0
+bullet_damage = 10.0
+shot_sound = NodePath("AudioStreamPlayer")
+bullet_spawn_marker = NodePath("Marker2D")
+max_ammo = 30
+mag_bar = NodePath("CanvasLayer/Control/TextureProgressBar")
+reload_time = 1.5
+reload_sound = NodePath("AudioStreamPlayer2")
+sprite = NodePath("Sprite2D")
+muzzle_flash = NodePath("Sprite2D2")
+
+[node name="Akmag" type="Sprite2D" parent="."]
+position = Vector2(13, 1)
+scale = Vector2(0.306667, 0.425)
+texture = ExtResource("3_dxpw5")
+
+[node name="Akmag2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-6, -4)
+scale = Vector2(0.306667, 0.425)
+texture = ExtResource("3_dxpw5")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0.811765)
+position = Vector2(43.7969, 0)
+scale = Vector2(0.73625, 0.4575)
+texture = ExtResource("3_ubve0")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(13, 3)
+scale = Vector2(0.32, 0.3625)
+texture = ExtResource("5_v1kmw")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(37, 0)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_1uwg2")
+pitch_scale = 0.8
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_f3jxp")
+
+[node name="CamShakeArea" type="Area2D" parent="." node_paths=PackedStringArray("collision")]
+script = ExtResource("6_85r44")
+collision = NodePath("CollisionShape2D")
+shake_strenght = 1.3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CamShakeArea"]
+shape = SubResource("CircleShape2D_mpno6")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 124.0
+offset_top = 254.0
+offset_right = 124.536
+offset_bottom = 254.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -61.5
+offset_right = 15.0
+offset_bottom = 61.5
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 80.0
+value = 80.0
+fill_mode = 2
+texture_under = ExtResource("7_nj6yv")
+texture_progress = ExtResource("8_wt6xv")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -208.0
+offset_top = -288.0
+offset_right = -25.0
+offset_bottom = -233.0
+scale = Vector2(0.4, 0.4)
+theme_override_font_sizes/font_size = 40
+text = "reloading"
+
+[node name="Timer2" type="Timer" parent="."]
+
+[node name="Pielothand" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(6, 6)
+rotation = 0.47822
+scale = Vector2(0.4, 0.424)
+texture = ExtResource("12_v4wwm")
+
+[node name="Pielothandright" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(22, 4)
+rotation = -1.5708
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("13_aobdy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_ly36l")
+}
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="CamShakeArea" to="CamShakeArea" method="_on_body_entered"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

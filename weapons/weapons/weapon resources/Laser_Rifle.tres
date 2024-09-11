@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://1uv72u1p3x5g"]
+
+[ext_resource type="Texture2D" uid="uid://dn1y2lj5ewbd7" path="res://Assets/weapons/space ar.png" id="1_dt1e4"]
+[ext_resource type="PackedScene" uid="uid://bubbgxcw315jb" path="res://weapons/weapons/scenes/laser_rifle.tscn" id="2_ny66g"]
+[ext_resource type="Script" path="res://Inventories/scripts/Item.gd" id="3_o44ur"]
+
+[resource]
+script = ExtResource("3_o44ur")
+item_name = "laser rifle"
+item_scene = ExtResource("2_ny66g")
+item_icon = ExtResource("1_dt1e4")
+amount = 0
+stackable = false
+item_type = 0
+item_value = 200
+is_c4 = false

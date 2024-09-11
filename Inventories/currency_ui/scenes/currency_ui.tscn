@@ -1,0 +1,76 @@
+[gd_scene load_steps=8 format=3 uid="uid://bvu8keypc37ym"]
+
+[ext_resource type="Script" path="res://Inventories/currency_ui/scripts/currency_ui.gd" id="1_mvp6l"]
+[ext_resource type="PackedScene" uid="uid://dewlk4w58x0q5" path="res://Inventories/currency_ui/scenes/heads_display_mantis.tscn" id="1_s57p7"]
+[ext_resource type="PackedScene" uid="uid://dpiju0umm5lwr" path="res://Inventories/currency_ui/scenes/heads_display_hundred.tscn" id="2_oet5j"]
+[ext_resource type="PackedScene" uid="uid://cluahigsmmhks" path="res://Inventories/currency_ui/scenes/heads_display_mantis_red.tscn" id="3_5y4vj"]
+[ext_resource type="Texture2D" uid="uid://dgu588umvuu44" path="res://Assets/characters/enemies/eggos.png" id="4_g2ag8"]
+[ext_resource type="PackedScene" uid="uid://cuns0olv50pfw" path="res://Inventories/currency_ui/scenes/heads_display_chrobus.tscn" id="5_43mxh"]
+[ext_resource type="Texture2D" uid="uid://dlwo3cl58an6v" path="res://Assets/characters/enemies/bughole.png" id="5_lvvgx"]
+
+[node name="currency_UI" type="Control"]
+layout_mode = 3
+anchor_right = 0.066
+anchor_bottom = 0.086
+offset_right = 1072.97
+offset_bottom = -5.728
+script = ExtResource("1_mvp6l")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.063
+anchor_bottom = 1.06
+offset_right = -0.387001
+
+[node name="PanelContainer" parent="HBoxContainer" instance=ExtResource("1_s57p7")]
+layout_mode = 2
+
+[node name="PanelContainer2" parent="HBoxContainer" instance=ExtResource("2_oet5j")]
+layout_mode = 2
+
+[node name="PanelContainer3" parent="HBoxContainer" instance=ExtResource("3_5y4vj")]
+layout_mode = 2
+
+[node name="PanelContainer4" parent="HBoxContainer" instance=ExtResource("5_43mxh")]
+layout_mode = 2
+headtype = 4
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.859
+anchor_top = 0.08
+anchor_right = 1.0
+anchor_bottom = 0.88
+offset_left = 0.00726318
+offset_right = -0.00195313
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="eggs" type="TextureRect" parent="HBoxContainer2"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = ExtResource("4_g2ag8")
+expand_mode = 3
+
+[node name="holes" type="TextureRect" parent="HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("5_lvvgx")
+expand_mode = 3
+
+[node name="current_count" type="Label" parent="HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "00"
+
+[node name="slash" type="Label" parent="HBoxContainer2"]
+layout_mode = 2
+text = "/"
+
+[node name="needed_count" type="Label" parent="HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "10"

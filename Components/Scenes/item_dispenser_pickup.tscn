@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cllewee35woa5"]
+
+[ext_resource type="Script" path="res://Components/Scripts/item_pickup.gd" id="1_skwvr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k1fsh"]
+radius = 12.0
+
+[node name="Item_pickup" type="Area2D" node_paths=PackedStringArray("interact")]
+script = ExtResource("1_skwvr")
+interact = NodePath("Label")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_k1fsh")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -4.0
+offset_top = -47.0
+offset_right = 6.0
+offset_bottom = -24.0
+text = "E"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://58m0nnh3dwvg"]
+
+[ext_resource type="Script" path="res://levels/objectives/scripts/shiny_rock.gd" id="1_nr1tp"]
+[ext_resource type="Script" path="res://Components/Scripts/health_component.gd" id="2_5r105"]
+[ext_resource type="Texture2D" uid="uid://sxawrcbloai5" path="res://Assets/icons/glowingrock.png" id="2_bekxh"]
+[ext_resource type="Script" path="res://Components/Scripts/hitbox_component.gd" id="3_3765l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qsscy"]
+radius = 52.2015
+
+[node name="ShinyRock" type="Node2D"]
+script = ExtResource("1_nr1tp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_bekxh")
+
+[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("entity")]
+script = ExtResource("2_5r105")
+max_health = 250.0
+health = 250.0
+entity = NodePath("..")
+
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("collision_shape", "health_component")]
+collision_layer = 13
+collision_mask = 13
+script = ExtResource("3_3765l")
+collision_shape = NodePath("CollisionShape2D")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_qsscy")
+
+[connection signal="IDIED" from="HealthComponent" to="." method="_on_health_component_idied"]
+[connection signal="area_entered" from="HitboxComponent" to="HitboxComponent" method="_on_area_entered"]

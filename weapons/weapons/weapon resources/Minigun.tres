@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://8heo8c3c0k3i"]
+
+[ext_resource type="Texture2D" uid="uid://vg5he4vwxteo" path="res://Assets/weapons/space gatt.png" id="1_k5lcx"]
+[ext_resource type="Script" path="res://Inventories/scripts/Item.gd" id="1_ommor"]
+[ext_resource type="PackedScene" uid="uid://cfodomtt2esvw" path="res://weapons/weapons/scenes/minigun.tscn" id="2_7nv73"]
+
+[resource]
+script = ExtResource("1_ommor")
+item_name = "Laser Gatt"
+item_scene = ExtResource("2_7nv73")
+item_icon = ExtResource("1_k5lcx")
+amount = 0
+stackable = false
+item_type = 0
+item_value = 1000
+is_c4 = false

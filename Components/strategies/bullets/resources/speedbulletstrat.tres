@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SpeedBulletStrategy" load_steps=3 format=3 uid="uid://cpdr78avlsqtn"]
+
+[ext_resource type="Script" path="res://Components/strategies/bullets/scripts/speedbulletstrat.gd" id="1_rqpqx"]
+[ext_resource type="Texture2D" uid="uid://cxj7lrbhxpi1g" path="res://Assets/icons/attackup.png" id="2_ldmwh"]
+
+[resource]
+script = ExtResource("1_rqpqx")
+speed_buff = 50.0
+texture = ExtResource("2_ldmwh")
+strategy_name = "BulletSpeedUP"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="DroneSwapStrategy" load_steps=3 format=3 uid="uid://cxsdde3iv33as"]
+
+[ext_resource type="Script" path="res://Components/strategies/drones/scripts/DroneswapStrategy.gd" id="1_7hbfy"]
+[ext_resource type="PackedScene" uid="uid://dbc3ntkx7wa27" path="res://passive items/drones/scenes/mrdroneShotgun.tscn" id="1_gussh"]
+
+[resource]
+script = ExtResource("1_7hbfy")
+drone_scene = ExtResource("1_gussh")
+drone_type = 2
+strategy_name = "Swap Drone Shotgun"

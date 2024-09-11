@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="HealthShieldStrategy" load_steps=2 format=3 uid="uid://bm2yhqu42hlkl"]
+
+[ext_resource type="Script" path="res://Components/strategies/shields/scripts/HealthShieldStrategy.gd" id="1_pie78"]
+
+[resource]
+script = ExtResource("1_pie78")
+shield_buff = 10.0
+strategy_name = "ShieldHP+10"

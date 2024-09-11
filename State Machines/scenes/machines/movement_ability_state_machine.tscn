@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://de24qygtekhmj"]
+
+[ext_resource type="Script" path="res://State Machines/scenes/machines/movement_ability_state_machine.gd" id="1_umop8"]
+
+[node name="MovementAbilityStateMachine" type="Node"]
+script = ExtResource("1_umop8")

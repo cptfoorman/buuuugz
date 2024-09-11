@@ -1,0 +1,119 @@
+[gd_scene load_steps=8 format=3 uid="uid://75hckxugje54"]
+
+[ext_resource type="Script" path="res://Inventories/shop_inventories/drones/drone_ui.gd" id="1_gddno"]
+[ext_resource type="Texture2D" uid="uid://rqj8vscbfdsg" path="res://Assets/icons/droneshotgunicon.png" id="1_vuwxy"]
+[ext_resource type="Texture2D" uid="uid://btn2n5pbvmwca" path="res://Assets/icons/dronearicon.png" id="2_31lx8"]
+[ext_resource type="PackedScene" uid="uid://dbc3ntkx7wa27" path="res://passive items/drones/scenes/mrdroneShotgun.tscn" id="2_m8cr2"]
+[ext_resource type="PackedScene" uid="uid://cnmpg3i3bvi80" path="res://passive items/drones/scenes/mrdroneLAR.tscn" id="3_7i04c"]
+[ext_resource type="Texture2D" uid="uid://4ib45gqjycsl" path="res://Assets/icons/droneflameicon.png" id="3_xss8p"]
+[ext_resource type="PackedScene" uid="uid://gfrwmv06xak1" path="res://passive items/drones/scenes/mrdroneflame.tscn" id="4_d2ais"]
+
+[node name="drone_ui" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_gddno")
+shotgun_drone = ExtResource("2_m8cr2")
+rifle_drone = ExtResource("3_7i04c")
+flame_drone = ExtResource("4_d2ais")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 1136.0
+offset_bottom = 622.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 48
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "shotgun"
+
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "assalut"
+
+[node name="Label3" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "flame"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("1_vuwxy")
+
+[node name="TextureRect2" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("2_31lx8")
+
+[node name="TextureRect3" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("3_xss8p")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="equipshotgun" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "equip"
+
+[node name="equipAR" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "equip"
+
+[node name="equipflame" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "equip"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/separation = 50
+
+[node name="clear_current_drone" type="Button" parent="PanelContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "clear current"
+
+[node name="accept" type="Button" parent="PanelContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "accept"
+
+[node name="escape" type="Button" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "x"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer3/equipshotgun" to="." method="_on_equipshotgun_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer3/equipAR" to="." method="_on_equip_ar_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer3/equipflame" to="." method="_on_equipflame_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer2/clear_current_drone" to="." method="_on_clear_current_drone_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer2/accept" to="." method="_on_accept_pressed"]
+[connection signal="pressed" from="PanelContainer/escape" to="." method="_on_escape_pressed"]

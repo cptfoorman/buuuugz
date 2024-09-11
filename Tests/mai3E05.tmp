@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://de5cxaoj21mk0"]
+
+[ext_resource type="PackedScene" uid="uid://nu2572yiwcxs" path="res://levels/scene Manager/level_manager.tscn" id="1_538qy"]
+[ext_resource type="PackedScene" uid="uid://biqf3okjiqusd" path="res://player/scenes/player.tscn" id="2_0812o"]
+[ext_resource type="PackedScene" uid="uid://chupdtawwqork" path="res://Tests/test_1.tscn" id="2_abdu1"]
+[ext_resource type="PackedScene" uid="uid://hthuc5b8gcri" path="res://Tests/test_3.tscn" id="2_f5eer"]
+[ext_resource type="PackedScene" uid="uid://bktwjx0anwr2r" path="res://Tests/test_2.tscn" id="3_nbde3"]
+
+[node name="main" type="Node2D"]
+
+[node name="LevelManager" parent="." instance=ExtResource("1_538qy")]
+level_scenes = Array[PackedScene]([ExtResource("2_f5eer"), ExtResource("3_nbde3")])
+
+[node name="player" parent="LevelManager" instance=ExtResource("2_0812o")]
+top_level = true
+z_index = 1
+
+[node name="Test1" parent="LevelManager" instance=ExtResource("2_abdu1")]

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SizeBulletStrategy" load_steps=3 format=3 uid="uid://dtb0obe37tl1t"]
+
+[ext_resource type="Script" path="res://Components/strategies/bullets/scripts/BulletSizeStrat.gd" id="1_h4b4g"]
+[ext_resource type="Texture2D" uid="uid://cxj7lrbhxpi1g" path="res://Assets/icons/attackup.png" id="2_l25hq"]
+
+[resource]
+script = ExtResource("1_h4b4g")
+size_buff = 0.01
+texture = ExtResource("2_l25hq")
+strategy_name = "BulletSizeUP"

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://3vy1f34wcqnd"]
+
+[ext_resource type="Script" path="res://Components/Scripts/npc_nav.gd" id="1_4jc4t"]
+
+[node name="NpcNav" type="NavigationAgent2D"]
+path_postprocessing = 1
+script = ExtResource("1_4jc4t")
+
+[connection signal="velocity_computed" from="." to="." method="_on_velocity_computed"]

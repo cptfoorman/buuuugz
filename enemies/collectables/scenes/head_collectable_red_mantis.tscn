@@ -1,0 +1,122 @@
+[gd_scene load_steps=7 format=3 uid="uid://cegad03ubqt3n"]
+
+[ext_resource type="Script" path="res://enemies/collectables/scripts/head_collectable.gd" id="1_mrjyw"]
+[ext_resource type="Texture2D" uid="uid://ckc3q7cdf0e6b" path="res://Assets/icons/mantitshead.png" id="2_eg0xm"]
+[ext_resource type="Texture2D" uid="uid://dtref2pmv88h2" path="res://Assets/icons/+1.png" id="3_cdgcb"]
+
+[sub_resource type="Animation" id="Animation_b7osx"]
+resource_name = "head_collected"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.433333, 0.633333, 0.833333, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -10), Vector2(-5.96047e-08, -24), Vector2(5.96047e-08, -36), Vector2(7.10543e-15, -47), Vector2(-7.10543e-15, -49), Vector2(3.20375e-07, -55)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.833333, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.4, 0.4), Vector2(0.2, 0.2), Vector2(0.15, 0.15), Vector2(0.01, 0.01)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:skew")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.433333, 0.633333, 0.833333, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.221657, 0.58294, 1.56905, 0.865683, 0.122173, -1.56905]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Sprite2D2:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.566667, 1.2, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Sprite2D2:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.0333334, 1.2, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.3, 0.313), Vector2(0.3, 0.313), Vector2(0, 0)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("..")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.2, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"add_coin"
+}, {
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_subof"]
+_data = {
+"head_collected": SubResource("Animation_b7osx")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v6q0u"]
+radius = 26.0
+
+[node name="head_collectable" type="Area2D" node_paths=PackedStringArray("anim_player")]
+top_level = true
+script = ExtResource("1_mrjyw")
+anim_player = NodePath("AnimationPlayer")
+headtype = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_subof")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0, 0.027451, 1)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_eg0xm")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(6, -45)
+scale = Vector2(0.3, 0.313)
+texture = ExtResource("3_cdgcb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_v6q0u")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

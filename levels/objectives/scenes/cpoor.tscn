@@ -1,0 +1,139 @@
+[gd_scene load_steps=15 format=3 uid="uid://bx453n7bpnmwn"]
+
+[ext_resource type="Script" path="res://levels/objectives/scripts/cpoor.gd" id="1_14eqe"]
+[ext_resource type="Resource" uid="uid://cnc06bcrc8ajw" path="res://weapons/weapons/weapon resources/c4.tres" id="2_lfn2p"]
+[ext_resource type="PackedScene" uid="uid://cllewee35woa5" path="res://Components/Scenes/item_dispenser_pickup.tscn" id="2_lkick"]
+[ext_resource type="Texture2D" uid="uid://7ogddmtokdcr" path="res://Assets/weapons/cpoor-Sheet.png" id="3_854x6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mikoa"]
+size = Vector2(66, 147)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ig28"]
+atlas = ExtResource("3_854x6")
+region = Rect2(0, 0, 150, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsqjv"]
+atlas = ExtResource("3_854x6")
+region = Rect2(0, 0, 150, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k35re"]
+atlas = ExtResource("3_854x6")
+region = Rect2(150, 0, 150, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1a6g"]
+atlas = ExtResource("3_854x6")
+region = Rect2(300, 0, 150, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6osjx"]
+atlas = ExtResource("3_854x6")
+region = Rect2(450, 0, 150, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_byxte"]
+atlas = ExtResource("3_854x6")
+region = Rect2(600, 0, 150, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8ahgv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ig28")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rsqjv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k35re")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1a6g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6osjx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_byxte")
+}],
+"loop": false,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_7jk0x"]
+resource_name = "dispense"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-33, -21), Vector2(17, -23), Vector2(54, -20)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"new_animation"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.1, 0.166667, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g835j"]
+_data = {
+"dispense": SubResource("Animation_7jk0x")
+}
+
+[node name="Cpoor" type="Node2D" node_paths=PackedStringArray("dispense_marker")]
+scale = Vector2(0.7, 0.7)
+script = ExtResource("1_14eqe")
+c4 = ExtResource("2_lfn2p")
+dispense_pickup = ExtResource("2_lkick")
+dispense_marker = NodePath("Marker2D")
+cost = 5
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-54, -35.5)
+shape = SubResource("RectangleShape2D_mikoa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-6, -46)
+sprite_frames = SubResource("SpriteFrames_8ahgv")
+animation = &"new_animation"
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-33, -21)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_g835j")
+}
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

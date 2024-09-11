@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://by8pb0s1uqnsf"]
+
+[ext_resource type="Texture2D" uid="uid://dk6x8pdymi110" path="res://Assets/weapons/space shotty.png" id="1_lsncl"]
+[ext_resource type="PackedScene" uid="uid://bk5764qhuf86x" path="res://weapons/weapons/scenes/Lasshotgun.tscn" id="2_fnip7"]
+[ext_resource type="Script" path="res://Inventories/scripts/Item.gd" id="3_y1fu4"]
+
+[resource]
+script = ExtResource("3_y1fu4")
+item_name = "Las-Shotgun"
+item_scene = ExtResource("2_fnip7")
+item_icon = ExtResource("1_lsncl")
+amount = 0
+stackable = false
+item_type = 0
+item_value = 350
+is_c4 = false

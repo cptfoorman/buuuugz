@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://cd78njjx4ktn1"]
+
+[ext_resource type="Texture2D" uid="uid://c53ouw0m65fv8" path="res://Assets/weapons/remington.png" id="1_52ikr"]
+[ext_resource type="PackedScene" uid="uid://fr7oqd7gx34q" path="res://weapons/weapons/scenes/Remington.tscn" id="2_vk2ae"]
+[ext_resource type="Script" path="res://Inventories/scripts/Item.gd" id="3_x52oc"]
+
+[resource]
+script = ExtResource("3_x52oc")
+item_name = "Remington"
+item_scene = ExtResource("2_vk2ae")
+item_icon = ExtResource("1_52ikr")
+amount = 0
+stackable = false
+item_type = 0
+item_value = 300
+is_c4 = false

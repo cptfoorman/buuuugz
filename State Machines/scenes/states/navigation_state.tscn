@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bc7dkrdpy7q48"]
+
+[ext_resource type="Script" path="res://State Machines/scripts/navigation_state.gd" id="1_mtspq"]
+
+[node name="NavigationState" type="Node"]
+script = ExtResource("1_mtspq")

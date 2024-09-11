@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0f2iftwprelc"]
+
+[ext_resource type="Script" path="res://weapons/Bullets/scripts/effect_on_hit_giver.gd" id="1_tngpo"]
+
+[node name="Effect_on_hit_giver" type="Area2D"]
+script = ExtResource("1_tngpo")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

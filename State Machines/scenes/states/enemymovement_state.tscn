@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkryoeei1gsrf"]
+
+[ext_resource type="Script" path="res://State Machines/scripts/enemymovement_state.gd" id="1_tusjs"]
+
+[node name="EnemymovementState" type="Node"]
+script = ExtResource("1_tusjs")

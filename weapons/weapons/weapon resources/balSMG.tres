@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://b8oxv4vuhblci"]
+
+[ext_resource type="Texture2D" uid="uid://dlxgslxxuikkh" path="res://Assets/weapons/vector_submachinegun.png" id="1_gv4ya"]
+[ext_resource type="PackedScene" uid="uid://rk78gf6eqkah" path="res://weapons/weapons/scenes/Vector2i.tscn" id="2_jpyqw"]
+[ext_resource type="Script" path="res://Inventories/scripts/Item.gd" id="3_ivslp"]
+
+[resource]
+script = ExtResource("3_ivslp")
+item_name = "Vector2i"
+item_scene = ExtResource("2_jpyqw")
+item_icon = ExtResource("1_gv4ya")
+amount = 0
+stackable = false
+item_type = 0
+item_value = 500
+is_c4 = false

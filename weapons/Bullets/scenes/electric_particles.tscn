@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6to2t4x22h3f"]
+
+[ext_resource type="Texture2D" uid="uid://bxq8w4ps1b20w" path="res://Assets/particles/sparkblue.png" id="1_wkbo5"]
+[ext_resource type="Script" path="res://weapons/Bullets/scripts/Electric_dot.gd" id="2_6vh3g"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ossn5"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(30, 80, 1)
+spread = 90.0
+initial_velocity_max = 8.72
+gravity = Vector3(30, -45, 0)
+
+[node name="ElectricParticles" type="GPUParticles2D" node_paths=PackedStringArray("slow_timer")]
+process_material = SubResource("ParticleProcessMaterial_ossn5")
+texture = ExtResource("1_wkbo5")
+script = ExtResource("2_6vh3g")
+slow_timer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

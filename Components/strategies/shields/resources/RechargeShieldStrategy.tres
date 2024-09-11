@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="RechargehShieldStrategy" load_steps=2 format=3 uid="uid://m2y2jq8dm3op"]
+
+[ext_resource type="Script" path="res://Components/strategies/shields/scripts/RechargeShieldStrategy.gd" id="1_v705k"]
+
+[resource]
+script = ExtResource("1_v705k")
+recharge_down_by = 0.02
+strategy_name = "Shield Recharge -0.02s"

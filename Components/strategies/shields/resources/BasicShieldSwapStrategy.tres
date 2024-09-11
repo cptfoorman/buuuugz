@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ShieldSwapStrategy" load_steps=3 format=3 uid="uid://cguuf2skrqbmx"]
+
+[ext_resource type="Script" path="res://Components/strategies/shields/scripts/shieldswapstrategy.gd" id="1_1f5a6"]
+[ext_resource type="PackedScene" uid="uid://c3a185jh8l2rs" path="res://passive items/shields/scenes/shield.tscn" id="2_pbg8u"]
+
+[resource]
+script = ExtResource("1_1f5a6")
+shield_scene = ExtResource("2_pbg8u")
+shield_type = 1
+strategy_name = "Basic Shield Swap"

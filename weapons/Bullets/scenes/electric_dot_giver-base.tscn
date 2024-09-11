@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwjuiy5l83ypp"]
+
+[ext_resource type="Script" path="res://weapons/Bullets/scripts/flame_dot_giver.gd" id="1_t7b84"]
+[ext_resource type="PackedScene" uid="uid://b6to2t4x22h3f" path="res://weapons/Bullets/scenes/electric_particles.tscn" id="2_qf5ko"]
+
+[node name="Electric_dot_giver" type="Area2D" node_paths=PackedStringArray("collision")]
+collision_layer = 4
+collision_mask = 4
+monitorable = false
+script = ExtResource("1_t7b84")
+flame_particle_scene = ExtResource("2_qf5ko")
+collision = NodePath("")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

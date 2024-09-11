@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyldt0gt7xmvd"]
+
+[ext_resource type="Script" path="res://Components/Scripts/item_pickup.gd" id="1_p1eqe"]
+
+[node name="Item_pickup" type="Area2D" node_paths=PackedStringArray("label", "interact")]
+scale = Vector2(0.6, 0.6)
+script = ExtResource("1_p1eqe")
+label = NodePath("Label")
+interact = NodePath("Label2")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -4.0
+offset_top = -47.0
+offset_right = 6.0
+offset_bottom = -24.0
+text = "E"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = -6.66667
+offset_top = -61.6667
+offset_right = 15.3333
+offset_bottom = -6.66666
+scale = Vector2(0.7, 0.7)
+theme_override_font_sizes/font_size = 40
+text = "E"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

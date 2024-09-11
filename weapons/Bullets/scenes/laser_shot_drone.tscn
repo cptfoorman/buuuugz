@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://c6xbvifuu30d2"]
+
+[ext_resource type="Script" path="res://weapons/Bullets/scripts/bulletbase.gd" id="1_v446x"]
+[ext_resource type="Texture2D" uid="uid://2pvhbrs7mxco" path="res://Assets/weapons/bullets/cloudy bullet.png" id="2_x2mxq"]
+[ext_resource type="Script" path="res://Components/Scripts/hurtbox_component.gd" id="3_jn3mg"]
+[ext_resource type="Script" path="res://Components/Scripts/cam_shake_area.gd" id="4_omv8a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n1bqa"]
+size = Vector2(22, 2.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sfpjd"]
+radius = 13.0384
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ma71"]
+size = Vector2(16, 1)
+
+[node name="BulletBase" type="Area2D" node_paths=PackedStringArray("sprite", "hurtbox", "camshake")]
+collision_layer = 4
+collision_mask = 256
+script = ExtResource("1_v446x")
+sprite = NodePath("Sprite2D")
+hurtbox = NodePath("HurtboxComponent")
+camshake = NodePath("CamShakeArea")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(0.46, 0.16)
+texture = ExtResource("2_x2mxq")
+
+[node name="HurtboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("collision")]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("3_jn3mg")
+collision = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(-1, -0.75)
+shape = SubResource("RectangleShape2D_n1bqa")
+
+[node name="CamShakeArea" type="Area2D" parent="." node_paths=PackedStringArray("collision")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("4_omv8a")
+collision = NodePath("CollisionShape2D")
+shake_strenght = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CamShakeArea"]
+shape = SubResource("CircleShape2D_sfpjd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -1)
+shape = SubResource("RectangleShape2D_7ma71")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-6, -1)
+scale = Vector2(0.6, 0.1)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="CamShakeArea" to="CamShakeArea" method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

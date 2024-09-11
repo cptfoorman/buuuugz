@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://dpy1cdk0kkduh"]
+
+[ext_resource type="Texture2D" uid="uid://dgu588umvuu44" path="res://Assets/characters/enemies/eggos.png" id="1_atyok"]
+[ext_resource type="Script" path="res://levels/objectives/scripts/egg_objective.gd" id="1_glg8q"]
+[ext_resource type="Script" path="res://Components/Scripts/health_component.gd" id="3_giolj"]
+[ext_resource type="Script" path="res://Components/Scripts/hitbox_component.gd" id="4_cy2u5"]
+[ext_resource type="AudioStream" uid="uid://dra4uo4eb4tbu" path="res://Assets/weapons/sfx/goopy-slime-4-219777.mp3" id="5_5vws8"]
+[ext_resource type="PackedScene" uid="uid://bnm61ydgmnmkw" path="res://Components/particles/bloodparticle.tscn" id="6_6hgx6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4kbf4"]
+radius = 62.0081
+
+[node name="egg_objective" type="Node2D"]
+script = ExtResource("1_glg8q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(12, -35)
+texture = ExtResource("1_atyok")
+
+[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("entity")]
+script = ExtResource("3_giolj")
+max_health = 100.0
+health = 100.0
+entity = NodePath("..")
+
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("collision_shape", "health_component", "hit_sound")]
+collision_layer = 12
+collision_mask = 12
+script = ExtResource("4_cy2u5")
+collision_shape = NodePath("CollisionShape2D")
+health_component = NodePath("../HealthComponent")
+hit_sound = NodePath("../AudioStreamPlayer")
+pitch_upper = 0.8
+pitch_lower = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+visible = false
+position = Vector2(1, -21)
+shape = SubResource("CircleShape2D_4kbf4")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_5vws8")
+pitch_scale = 0.5
+
+[node name="bloodparticle" parent="." instance=ExtResource("6_6hgx6")]
+unique_name_in_owner = true
+self_modulate = Color(0.105882, 0.501961, 0.309804, 1)
+position = Vector2(0, -17)
+emitting = false
+amount = 30
+lifetime = 1.0
+one_shot = true
+speed_scale = 0.3
+
+[connection signal="IDIED" from="HealthComponent" to="." method="_on_health_component_idied"]
+[connection signal="IGOTHIT" from="HitboxComponent" to="bloodparticle" method="_on_hitbox_component_igothit"]
+[connection signal="area_entered" from="HitboxComponent" to="HitboxComponent" method="_on_area_entered"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

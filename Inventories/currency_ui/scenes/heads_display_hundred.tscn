@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpiju0umm5lwr"]
+
+[ext_resource type="Script" path="res://Inventories/currency_ui/scripts/panel_container.gd" id="1_2hrxj"]
+[ext_resource type="Texture2D" uid="uid://bcqty4m3gg3ol" path="res://Assets/icons/100head.png" id="2_y5fki"]
+
+[node name="PanelContainer" type="PanelContainer"]
+offset_right = 120.0
+offset_bottom = 53.0
+script = ExtResource("1_2hrxj")
+headtype = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_y5fki")
+
+[node name="x" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "X"
+
+[node name="count" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2

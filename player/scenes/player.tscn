@@ -1,0 +1,513 @@
+[gd_scene load_steps=41 format=3 uid="uid://biqf3okjiqusd"]
+
+[ext_resource type="Script" path="res://player/scripts/player.gd" id="1_7q8jo"]
+[ext_resource type="Texture2D" uid="uid://bvprmjlv6wc84" path="res://Assets/characters/player/pielot full-Sheet.png" id="2_n4u0u"]
+[ext_resource type="PackedScene" uid="uid://c3a185jh8l2rs" path="res://passive items/shields/scenes/shield.tscn" id="2_rucb6"]
+[ext_resource type="PackedScene" uid="uid://dfc6y7lqnr2jo" path="res://player/scenes/weapon_backpack.tscn" id="4_2j5cu"]
+[ext_resource type="PackedScene" uid="uid://difl32wextuk5" path="res://player/scenes/crosshair.tscn" id="4_06c20"]
+[ext_resource type="AudioStream" uid="uid://cihnumpfubd6r" path="res://Assets/weapons/sfx/speedy-whoosh-229316.mp3" id="9_634dn"]
+[ext_resource type="Script" path="res://player/scripts/playercam.gd" id="10_hd3mx"]
+[ext_resource type="PackedScene" uid="uid://c2lpdm8gr22xw" path="res://Components/Scenes/health_component.tscn" id="11_6ni1u"]
+[ext_resource type="PackedScene" uid="uid://bnm61ydgmnmkw" path="res://Components/particles/bloodparticle.tscn" id="11_rsaha"]
+[ext_resource type="PackedScene" uid="uid://co047q6owsqo3" path="res://Components/Scenes/hitbox_component.tscn" id="12_v88o8"]
+[ext_resource type="PackedScene" uid="uid://k08ro8mhndbx" path="res://Components/particles/player_dash_trail.tscn" id="13_tfiyx"]
+[ext_resource type="AudioStream" uid="uid://br5nmpi8i4s22" path="res://Assets/weapons/sfx/bullethit.mp3" id="14_5fyrj"]
+[ext_resource type="Script" path="res://Inventories/scripts/ui_root.gd" id="18_bplwm"]
+[ext_resource type="PackedScene" uid="uid://cd16jdergk7fm" path="res://Inventories/on_foot_weapon_ui/weapon_ui.tscn" id="19_74dmj"]
+[ext_resource type="PackedScene" uid="uid://bvu8keypc37ym" path="res://Inventories/currency_ui/scenes/currency_ui.tscn" id="19_lkvbt"]
+[ext_resource type="PackedScene" uid="uid://bbpsofm7i2pjs" path="res://player/scenes/drone_control.tscn" id="20_2kl6r"]
+[ext_resource type="PackedScene" uid="uid://s8sbcyonhur2" path="res://Inventories/currency_ui/scenes/control_ui.tscn" id="20_dyvkv"]
+[ext_resource type="PackedScene" uid="uid://d2neac4wxyyy7" path="res://Inventories/currency_ui/scenes/currency_ui_base.tscn" id="21_h4j7k"]
+[ext_resource type="Texture2D" uid="uid://c1sgk5uwdfy7c" path="res://Assets/icons/hp_bar_back.png" id="23_7djhn"]
+[ext_resource type="AudioStream" uid="uid://cd3mjak8n118g" path="res://Assets/weapons/sfx/heartbeat-loop-96879.mp3" id="23_tfy0k"]
+[ext_resource type="Texture2D" uid="uid://c0j7ar8kxtwki" path="res://Assets/icons/hp_bar_fill.png" id="24_roox8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l4rv8"]
+radius = 9.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uadcm"]
+atlas = ExtResource("2_n4u0u")
+region = Rect2(0, 0, 50, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ch7a"]
+atlas = ExtResource("2_n4u0u")
+region = Rect2(50, 0, 50, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxmsg"]
+atlas = ExtResource("2_n4u0u")
+region = Rect2(100, 0, 50, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dx13g"]
+atlas = ExtResource("2_n4u0u")
+region = Rect2(0, 47, 50, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q88r6"]
+atlas = ExtResource("2_n4u0u")
+region = Rect2(50, 47, 50, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_am2v1"]
+atlas = ExtResource("2_n4u0u")
+region = Rect2(100, 47, 50, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pyln2"]
+atlas = ExtResource("2_n4u0u")
+region = Rect2(150, 47, 50, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24os8"]
+atlas = ExtResource("2_n4u0u")
+region = Rect2(200, 47, 50, 47)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_82dmm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uadcm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ch7a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxmsg")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dx13g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q88r6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_am2v1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pyln2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24os8")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t8aje"]
+
+[sub_resource type="Animation" id="Animation_c586o"]
+resource_name = "dash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player_dash_trail:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.966667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.433333, 0.933333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.05, 1.05), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0a27s"]
+resource_name = "death"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UIRoot/Control:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.166667, 1.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UIRoot/Control:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.533333, 0.766667, 1, 1.26667, 1.53333, 1.76667),
+"transitions": PackedFloat32Array(1, 0.965936, 1, 1, 1, 0.965936, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.14902), Color(1, 1, 1, 0.411765), Color(1, 1, 1, 0.14902), Color(1, 1, 1, 0.4), Color(1, 1, 1, 0.14902), Color(1, 1, 1, 0.411765), Color(1, 1, 1, 0.14902), Color(1, 1, 1, 0.4)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("death:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.03333, 1.46667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera2D:zoom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0333333, 1.8, 1.93333),
+"transitions": PackedFloat32Array(1, 1.27456, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 2), Vector2(1, 1)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"player_death"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_1oift"]
+resource_name = "idle"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:sprite_frames")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("SpriteFrames_82dmm")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"run"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.433333, 0.6, 0.933333, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_bofm2"]
+resource_name = "walk"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:sprite_frames")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("SpriteFrames_82dmm")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6elyp"]
+_data = {
+"dash": SubResource("Animation_c586o"),
+"death": SubResource("Animation_0a27s"),
+"idle": SubResource("Animation_1oift"),
+"walk": SubResource("Animation_bofm2")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lo0rt"]
+radius = 15.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v83wa"]
+radius = 591.217
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_66hrt"]
+radius = 5.09902
+
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("weapon_backpack", "drone_backpack", "anim_sprite", "hands", "camera", "hp_bar", "health", "dash_time_timer", "dash_time_cooldown_timer", "dash_particles", "shield", "marker") groups=["Player"]]
+script = ExtResource("1_7q8jo")
+speed = 300.0
+weapon_backpack = NodePath("WeaponBackpack")
+drone_backpack = NodePath("drone_control")
+anim_sprite = NodePath("AnimatedSprite2D")
+hands = NodePath("hands")
+camera = NodePath("Camera2D")
+hp_bar = NodePath("UIRoot/hpui/TextureProgressBar")
+health = NodePath("HealthComponent")
+has_dash = true
+dash_speed = 1000.0
+dash_time_timer = NodePath("dash_time")
+dash_time_cooldown_timer = NodePath("dash_cooldown")
+dash_particles = NodePath("player_dash_trail")
+shield = NodePath("shield")
+marker = NodePath("crosshair")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_l4rv8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_82dmm")
+animation = &"idle"
+
+[node name="hands" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_t8aje")
+
+[node name="WeaponBackpack" parent="." groups=["WeaponBackpack"] instance=ExtResource("4_2j5cu")]
+visible = false
+
+[node name="crosshair" parent="." instance=ExtResource("4_06c20")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
+position_smoothing_enabled = true
+script = ExtResource("10_hd3mx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_6elyp")
+}
+
+[node name="bloodparticle" parent="." instance=ExtResource("11_rsaha")]
+self_modulate = Color(1, 0.117647, 0.0588235, 1)
+scale = Vector2(0.5, 0.5)
+emitting = false
+one_shot = true
+
+[node name="player_dash_trail" parent="." instance=ExtResource("13_tfiyx")]
+amount = 16
+lifetime = 1.0
+preprocess = 0.1
+speed_scale = 3.0
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("11_6ni1u")]
+max_health = 200.0
+health = 200.0
+entity = NodePath("..")
+player_health = true
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("collision_shape", "health_component", "hit_sound") instance=ExtResource("12_v88o8")]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+collision_shape = NodePath("CollisionShape2D")
+health_component = NodePath("../HealthComponent")
+hit_sound = NodePath("AudioStreamPlayer")
+pitch_upper = 0.8
+pitch_lower = 0.9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_lo0rt")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HitboxComponent"]
+stream = ExtResource("14_5fyrj")
+
+[node name="UIRoot" type="CanvasLayer" parent="."]
+script = ExtResource("18_bplwm")
+
+[node name="Control" type="Control" parent="UIRoot"]
+visible = false
+modulate = Color(1, 1, 1, 0.14902)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="ColorRect" parent="UIRoot/Control"]
+self_modulate = Color(1, 0, 0.0470588, 1)
+layout_mode = 0
+offset_right = 89.0
+offset_bottom = 643.0
+
+[node name="TextureRect2" type="ColorRect" parent="UIRoot/Control"]
+layout_mode = 0
+offset_right = 1150.0
+offset_bottom = 91.0
+color = Color(1, 0.0784314, 0.0431373, 1)
+
+[node name="TextureRect3" type="ColorRect" parent="UIRoot/Control"]
+self_modulate = Color(1, 0, 0.0627451, 1)
+layout_mode = 0
+offset_left = 1061.0
+offset_top = -3.0
+offset_right = 1152.0
+offset_bottom = 650.0
+
+[node name="TextureRect4" type="ColorRect" parent="UIRoot/Control"]
+self_modulate = Color(1, 0, 0.0509804, 1)
+layout_mode = 0
+offset_left = 17.0
+offset_top = 572.0
+offset_right = 1139.0
+offset_bottom = 649.0
+
+[node name="currency_UI" parent="UIRoot" instance=ExtResource("19_lkvbt")]
+unique_name_in_owner = true
+visible = false
+anchor_right = 0.997
+anchor_bottom = 0.077
+offset_right = 0.457886
+offset_bottom = 0.103996
+
+[node name="Control3" parent="UIRoot/currency_UI" instance=ExtResource("20_dyvkv")]
+layout_mode = 1
+offset_left = 243.14
+offset_top = 615.45
+offset_right = 2.99817
+offset_bottom = 598.0
+
+[node name="currency_UI_base" parent="UIRoot" instance=ExtResource("21_h4j7k")]
+unique_name_in_owner = true
+anchor_right = 0.195
+anchor_bottom = 0.083
+offset_right = -224.64
+offset_bottom = -53.784
+
+[node name="Control2" parent="UIRoot/currency_UI_base" instance=ExtResource("20_dyvkv")]
+layout_mode = 1
+offset_left = 1150.0
+offset_top = 636.0
+offset_right = 1150.0
+offset_bottom = 636.0
+
+[node name="WeaponUI" parent="UIRoot" instance=ExtResource("19_74dmj")]
+unique_name_in_owner = true
+visible = false
+offset_left = -4.0
+offset_top = 2.0
+offset_right = -4.0
+offset_bottom = 2.0
+
+[node name="hpui" type="Control" parent="UIRoot"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -103.5
+offset_top = -51.0
+offset_right = 103.5
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UIRoot/hpui"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -15.0
+offset_right = 100.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_under = ExtResource("23_7djhn")
+texture_progress = ExtResource("24_roox8")
+
+[node name="death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_tfy0k")
+
+[node name="dash_time" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="dash_cooldown" type="Timer" parent="."]
+
+[node name="dash_whosh" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("9_634dn")
+
+[node name="drone_control" parent="." groups=["DroneControl"] instance=ExtResource("20_2kl6r")]
+current_drone = null
+
+[node name="shield" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("2_rucb6")]
+on_character = true
+entity = NodePath("..")
+
+[node name="dronehands_dt" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dronehands_dt"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_v83wa")
+
+[node name="dronehands" type="CollisionShape2D" parent="."]
+light_mask = 0
+visibility_layer = 0
+shape = SubResource("CircleShape2D_66hrt")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-52, -58)
+
+[connection signal="IDIED" from="HealthComponent" to="." method="_on_health_component_idied"]
+[connection signal="IGOTHIT" from="HitboxComponent" to="bloodparticle" method="_on_hitbox_component_igothit"]
+[connection signal="area_exited" from="HitboxComponent" to="HitboxComponent" method="_on_area_exited"]
+[connection signal="InventoryReorganized" from="UIRoot/WeaponUI" to="UIRoot" method="_on_weapon_ui_inventory_reorganized"]
+[connection signal="timeout" from="dash_time" to="." method="_on_dash_time_timeout"]
+[connection signal="timeout" from="dash_cooldown" to="." method="_on_dash_cooldown_timeout"]
+[connection signal="body_entered" from="dronehands_dt" to="." method="_on_dronehands_dt_body_entered"]
+[connection signal="body_exited" from="dronehands_dt" to="." method="_on_dronehands_dt_body_exited"]

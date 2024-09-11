@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://5baf4aq8ra2"]
+
+[ext_resource type="Script" path="res://weapons/Bullets/scripts/flame_dot_giver.gd" id="1_nhyk3"]
+[ext_resource type="PackedScene" uid="uid://b6to2t4x22h3f" path="res://weapons/Bullets/scenes/electric_particles.tscn" id="2_gi43s"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0ulj1"]
+radius = 6.0
+
+[node name="Electric_dot_giver" type="Area2D" node_paths=PackedStringArray("collision")]
+collision_layer = 4
+collision_mask = 4
+monitorable = false
+script = ExtResource("1_nhyk3")
+flame_particle_scene = ExtResource("2_gi43s")
+collision = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 0)
+shape = SubResource("CircleShape2D_0ulj1")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

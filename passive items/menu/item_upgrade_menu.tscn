@@ -1,0 +1,147 @@
+[gd_scene load_steps=20 format=3 uid="uid://co1afosyuputv"]
+
+[ext_resource type="Script" path="res://passive items/menu/item_upgrade_menu.gd" id="1_1frs0"]
+[ext_resource type="Script" path="res://Components/strategies/shields/scripts/BaseShieldStrategy.gd" id="2_y2ys4"]
+[ext_resource type="Resource" uid="uid://bm2yhqu42hlkl" path="res://Components/strategies/shields/resources/HealthShieldStrategy.tres" id="3_r2pyu"]
+[ext_resource type="Resource" uid="uid://m2y2jq8dm3op" path="res://Components/strategies/shields/resources/RechargeShieldStrategy.tres" id="4_wgymx"]
+[ext_resource type="Script" path="res://Components/strategies/shields/scripts/shieldswapstrategy.gd" id="5_7qwb7"]
+[ext_resource type="Resource" uid="uid://jh8c7jnko8ob" path="res://Components/strategies/shields/resources/FireShieldSwapStrategy.tres" id="6_83mi1"]
+[ext_resource type="Resource" uid="uid://c40hj1gkm1foy" path="res://Components/strategies/shields/resources/ElectricShieldSwapStrategy.tres" id="7_da80o"]
+[ext_resource type="Resource" uid="uid://cguuf2skrqbmx" path="res://Components/strategies/shields/resources/BasicShieldSwapStrategy.tres" id="8_rdakk"]
+[ext_resource type="Script" path="res://Components/strategies/bullets/scripts/BaseStrategy.gd" id="9_8aw8d"]
+[ext_resource type="Script" path="res://Components/strategies/drones/scripts/DroneswapStrategy.gd" id="9_68tso"]
+[ext_resource type="Resource" uid="uid://cpdr78avlsqtn" path="res://Components/strategies/bullets/resources/speedbulletstrat.tres" id="10_lenjx"]
+[ext_resource type="Resource" uid="uid://jbp2pa01wev2" path="res://Components/strategies/drones/resources/RifleDroneSwap.tres" id="10_u6r2x"]
+[ext_resource type="Resource" uid="uid://dtb0obe37tl1t" path="res://Components/strategies/bullets/resources/sizebulletstrategy.tres" id="11_4o6b1"]
+[ext_resource type="Resource" uid="uid://cxsdde3iv33as" path="res://Components/strategies/drones/resources/ShotgunDroneSwap.tres" id="11_l43nf"]
+[ext_resource type="Resource" uid="uid://cpfn1knh1snkn" path="res://Components/strategies/drones/resources/FlamethrowerDroneSwap.tres" id="12_a3em7"]
+[ext_resource type="Resource" uid="uid://cqkj4wh8f7vhu" path="res://Components/strategies/bullets/resources/piercingbulletstrat.tres" id="12_cnf6e"]
+[ext_resource type="Resource" uid="uid://dd13lfyu0fv2y" path="res://Components/strategies/bullets/resources/FireDOTbulletstrat.tres" id="13_38idt"]
+[ext_resource type="Resource" uid="uid://bvqt8dwrbiik2" path="res://Components/strategies/bullets/resources/ElectricSlowbulletstrat.tres" id="14_we3ix"]
+[ext_resource type="Resource" uid="uid://cx1abrcbblw3t" path="res://Components/strategies/bullets/resources/damagebulletstrat.tres" id="15_p0nd4"]
+
+[node name="item_upgrade_menu" type="Control"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1frs0")
+possible_shield_upgrades = Array[ExtResource("2_y2ys4")]([ExtResource("3_r2pyu"), ExtResource("4_wgymx")])
+possible_shield_swaps = Array[ExtResource("5_7qwb7")]([ExtResource("6_83mi1"), ExtResource("7_da80o"), ExtResource("8_rdakk")])
+possible_drone_upgrades = Array[ExtResource("9_8aw8d")]([ExtResource("10_lenjx"), ExtResource("11_4o6b1"), ExtResource("12_cnf6e"), ExtResource("13_38idt"), ExtResource("14_we3ix"), ExtResource("15_p0nd4")])
+possible_drone_swaps = Array[ExtResource("9_68tso")]([ExtResource("10_u6r2x"), ExtResource("11_l43nf"), ExtResource("12_a3em7")])
+
+[node name="BaseUpgradeChoice" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 170.0
+offset_top = 92.0
+offset_right = -179.0
+offset_bottom = -158.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BaseUpgradeChoice"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 120
+
+[node name="drones" type="Button" parent="BaseUpgradeChoice/HBoxContainer"]
+custom_minimum_size = Vector2(140, 140)
+layout_mode = 2
+text = "Upgrade Drones"
+
+[node name="shields" type="Button" parent="BaseUpgradeChoice/HBoxContainer"]
+custom_minimum_size = Vector2(140, 140)
+layout_mode = 2
+text = "Upgrade Shields"
+
+[node name="ShieldUpgrades" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 170.0
+offset_top = 92.0
+offset_right = -179.0
+offset_bottom = -158.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShieldUpgrades"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 120
+
+[node name="shieldupgrade" type="Button" parent="ShieldUpgrades/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 140)
+layout_mode = 2
+text = "upgrade+100"
+
+[node name="shieldupgrade2" type="Button" parent="ShieldUpgrades/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+text = "upgrade+100"
+
+[node name="shieldswapoption" type="Button" parent="ShieldUpgrades/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+text = "Swap to xxxxx"
+
+[node name="DroneUpgrades" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 170.0
+offset_top = 92.0
+offset_right = -179.0
+offset_bottom = -158.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DroneUpgrades"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 120
+
+[node name="droneupgrade" type="Button" parent="DroneUpgrades/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 140)
+layout_mode = 2
+text = "upgrade+100"
+
+[node name="droneupgrade2" type="Button" parent="DroneUpgrades/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+text = "upgrade+100"
+
+[node name="droneswapoption" type="Button" parent="DroneUpgrades/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+text = "Swap to xxxxx"
+
+[connection signal="button_up" from="BaseUpgradeChoice/HBoxContainer/drones" to="." method="_on_drones_button_up"]
+[connection signal="button_up" from="BaseUpgradeChoice/HBoxContainer/shields" to="." method="_on_shields_button_up"]
+[connection signal="button_up" from="ShieldUpgrades/HBoxContainer/shieldupgrade" to="." method="_on_shieldupgrade_button_up"]
+[connection signal="button_up" from="ShieldUpgrades/HBoxContainer/shieldupgrade2" to="." method="_on_shieldupgrade_2_button_up"]
+[connection signal="button_up" from="ShieldUpgrades/HBoxContainer/shieldswapoption" to="." method="_on_shieldswapoption_button_up"]
+[connection signal="button_up" from="DroneUpgrades/HBoxContainer/droneupgrade" to="." method="_on_droneupgrade_button_up"]
+[connection signal="button_down" from="DroneUpgrades/HBoxContainer/droneupgrade2" to="." method="_on_droneupgrade_2_button_down"]
+[connection signal="button_up" from="DroneUpgrades/HBoxContainer/droneswapoption" to="." method="_on_droneswapoption_button_up"]

@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://c1xcu5oamjpq2"]
+
+[ext_resource type="Texture2D" uid="uid://b73iu2inpl2w3" path="res://Assets/characters/shops/mechatable-Sheet.png" id="1_frxod"]
+[ext_resource type="Script" path="res://shops/scripts/dronetable.gd" id="1_pdv86"]
+[ext_resource type="PackedScene" uid="uid://75hckxugje54" path="res://Inventories/shop_inventories/drones/drone_ui.tscn" id="3_y5dnu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n7o5n"]
+size = Vector2(74, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t158w"]
+atlas = ExtResource("1_frxod")
+region = Rect2(0, 0, 78, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlgip"]
+atlas = ExtResource("1_frxod")
+region = Rect2(78, 0, 78, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfakc"]
+atlas = ExtResource("1_frxod")
+region = Rect2(156, 0, 78, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvsdp"]
+atlas = ExtResource("1_frxod")
+region = Rect2(234, 0, 78, 44)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nwamb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t158w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jlgip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfakc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvsdp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aub3x"]
+radius = 113.159
+
+[node name="DroneTable" type="StaticBody2D"]
+script = ExtResource("1_pdv86")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_n7o5n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nwamb")
+autoplay = "default"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_aub3x")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="drone_ui" parent="CanvasLayer" instance=ExtResource("3_y5dnu")]
+unique_name_in_owner = true
+visible = false
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="DoneTinkering" from="CanvasLayer/drone_ui" to="." method="_on_drone_ui_done_tinkering"]

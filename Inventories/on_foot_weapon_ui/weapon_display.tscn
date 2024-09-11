@@ -1,0 +1,75 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6lqwcp61andy"]
+
+[ext_resource type="Script" path="res://Inventories/on_foot_weapon_ui/weapon_display.gd" id="1_4ulsh"]
+[ext_resource type="Texture2D" uid="uid://c44j0anyr8f67" path="res://Assets/icons/flamenwerfer ico.png" id="2_aluwk"]
+
+[node name="weapon_display" type="PanelContainer"]
+anchors_preset = -1
+anchor_right = 0.12
+anchor_bottom = 0.148
+offset_right = -0.240005
+offset_bottom = 0.0960007
+script = ExtResource("1_4ulsh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 50)
+layout_mode = 2
+texture = ExtResource("2_aluwk")
+expand_mode = 3
+stretch_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -41.0
+offset_top = 6.0
+offset_right = 41.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="weaponname" type="Label" parent="VBoxContainer/TextureRect/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "LMG"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TextureRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="equip" type="Button" parent="VBoxContainer/TextureRect/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "equip"
+
+[node name="dropbackpack" type="Button" parent="VBoxContainer/TextureRect/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "drop"
+
+[node name="dropbelt" type="Button" parent="VBoxContainer/TextureRect/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "drop"
+
+[node name="unequip" type="Button" parent="VBoxContainer/TextureRect/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "unequip"
+
+[connection signal="pressed" from="VBoxContainer/TextureRect/VBoxContainer/HBoxContainer/equip" to="." method="_on_equip_pressed"]
+[connection signal="pressed" from="VBoxContainer/TextureRect/VBoxContainer/HBoxContainer/dropbackpack" to="." method="_on_dropbackpack_pressed"]
+[connection signal="pressed" from="VBoxContainer/TextureRect/VBoxContainer/HBoxContainer/dropbelt" to="." method="_on_dropbelt_pressed"]
+[connection signal="pressed" from="VBoxContainer/TextureRect/VBoxContainer/HBoxContainer/unequip" to="." method="_on_unequip_pressed"]

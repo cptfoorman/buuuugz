@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbpsofm7i2pjs"]
+
+[ext_resource type="Script" path="res://player/scripts/dronecontroll.gd" id="1_f84iy"]
+[ext_resource type="PackedScene" uid="uid://cnmpg3i3bvi80" path="res://passive items/drones/scenes/mrdroneLAR.tscn" id="2_j1wnx"]
+
+[sub_resource type="Curve2D" id="Curve2D_372dw"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -105, -108, 0, 0, 0, 0, -44, -152, 0, 0, 0, 0, 34, -160, 0, 0, 0, 0, 109, -119, 0, 0, 0, 0, 145, -46, 0, 0, 0, 0, 160, 67, 0, 0, 0, 0, 129, 134, 0, 0, 0, 0, 47, 172, 0, 0, 0, 0, -51, 162, 0, 0, 0, 0, -100, 101, 0, 0, 0, 0, -134, 41, 0, 0, 0, 0, -132, -39, 0, 0, 0, 0, -105, -108)
+}
+point_count = 13
+
+[node name="drone_control" type="Node2D" node_paths=PackedStringArray("spawn_marker")]
+script = ExtResource("1_f84iy")
+current_drone = ExtResource("2_j1wnx")
+spawn_marker = NodePath("spawn")
+
+[node name="Path2D" type="Path2D" parent="."]
+unique_name_in_owner = true
+curve = SubResource("Curve2D_372dw")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+unique_name_in_owner = true
+position = Vector2(-105, -108)
+rotation = -0.624886
+
+[node name="Marker2D" type="Marker2D" parent="Path2D/PathFollow2D"]
+unique_name_in_owner = true
+
+[node name="spawn" type="Marker2D" parent="."]

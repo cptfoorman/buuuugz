@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://brxngmgu83m1e"]
+
+[ext_resource type="Texture2D" uid="uid://bg82l0xlrv631" path="res://Assets/characters/shops/HEADS exchange.png" id="1_awxen"]
+[ext_resource type="Script" path="res://shops/scripts/heads_exchange.gd" id="1_e0c8k"]
+[ext_resource type="PackedScene" uid="uid://rx2yw1d1iyk0" path="res://Inventories/shop_inventories/headselling/head_selling_ui.tscn" id="3_tfa80"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fmaig"]
+radius = 110.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e5fps"]
+size = Vector2(105, 42)
+
+[node name="HeadsExchange" type="StaticBody2D"]
+y_sort_enabled = true
+script = ExtResource("1_e0c8k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3, -80)
+texture = ExtResource("1_awxen")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-2, -65)
+shape = SubResource("CircleShape2D_fmaig")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -42)
+shape = SubResource("RectangleShape2D_e5fps")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="head_selling_ui" parent="CanvasLayer" instance=ExtResource("3_tfa80")]
+unique_name_in_owner = true
+visible = false
+offset_top = 3.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="EXIT" from="CanvasLayer/head_selling_ui" to="." method="_on_head_selling_ui_exit"]

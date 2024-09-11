@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://dp5w4v0ecb22"]
+
+[ext_resource type="Script" path="res://weapons/Bullets/scripts/rocket.gd" id="1_sry3y"]
+[ext_resource type="Texture2D" uid="uid://djn50eoavp1il" path="res://Assets/weapons/bullets/rocket.png" id="2_ffy2r"]
+[ext_resource type="Script" path="res://Components/Scripts/hurtbox_component.gd" id="3_rx7cm"]
+[ext_resource type="Script" path="res://Components/Scripts/cam_shake_area.gd" id="4_sm2tc"]
+[ext_resource type="PackedScene" uid="uid://dquao4owyq343" path="res://Components/particles/explosion.tscn" id="5_at5kh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_evitj"]
+radius = 128.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q80ot"]
+radius = 11.0454
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2op35"]
+radius = 17.0294
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nf1rh"]
+radius = 459.039
+
+[node name="rocket" type="Area2D" node_paths=PackedStringArray("explosion", "sprite", "hurtbox", "despawner", "camshake")]
+collision_layer = 269
+collision_mask = 13
+script = ExtResource("1_sry3y")
+explosion = NodePath("GPUParticles2D")
+sprite = NodePath("Sprite2D")
+hurtbox = NodePath("HurtboxComponent")
+despawner = NodePath("VisibleOnScreenEnabler2D")
+camshake = NodePath("CamShakeArea")
+is_explosive = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_ffy2r")
+
+[node name="HurtboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("collision")]
+collision_layer = 12
+collision_mask = 12
+script = ExtResource("3_rx7cm")
+collision = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+shape = SubResource("CircleShape2D_evitj")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(-12, 0.5)
+scale = Vector2(0.1, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_q80ot")
+
+[node name="GPUParticles2D" parent="." instance=ExtResource("5_at5kh")]
+scale = Vector2(0.2, 0.2)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 12
+collision_mask = 13
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_2op35")
+
+[node name="CamShakeArea" type="Area2D" parent="." node_paths=PackedStringArray("collision")]
+script = ExtResource("4_sm2tc")
+collision = NodePath("CollisionShape2D")
+shake_strenght = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CamShakeArea"]
+shape = SubResource("CircleShape2D_nf1rh")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="CamShakeArea" to="CamShakeArea" method="_on_body_entered"]

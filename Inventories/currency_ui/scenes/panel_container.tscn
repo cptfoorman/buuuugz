@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://bek3pry3t6kn4"]
+
+[ext_resource type="Script" path="res://Inventories/currency_ui/scripts/panel_container.gd" id="1_x5dsi"]
+[ext_resource type="Texture2D" uid="uid://ckc3q7cdf0e6b" path="res://Assets/icons/mantitshead.png" id="2_hl3d2"]
+
+[node name="PanelContainer" type="PanelContainer"]
+offset_right = 120.0
+offset_bottom = 53.0
+script = ExtResource("1_x5dsi")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_hl3d2")
+
+[node name="x" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "X"
+
+[node name="count" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2

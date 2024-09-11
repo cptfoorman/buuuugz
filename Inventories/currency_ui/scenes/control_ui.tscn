@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://s8sbcyonhur2"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchor_left = 0.791
+anchor_top = 0.651
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 240.768
+offset_top = 226.152
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = -211.0
+offset_top = -202.0
+offset_right = 1.0
+offset_bottom = -5.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="movement" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Movement"
+
+[node name="pick up" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "pick up"
+
+[node name="shoot" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Shoot"
+
+[node name="dash" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Dash"
+
+[node name="switch weapons" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Switch weapons"
+
+[node name="reload" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Reload"
+
+[node name="inventory" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Inventory"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="movement keys" type="Label" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "WASD"
+
+[node name="pick up key" type="Label" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "E"
+
+[node name="Shoot Key" type="Label" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "LMB"
+
+[node name="dash key" type="Label" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "SPACEBAR"
+
+[node name="Switch weapons key" type="Label" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "1 2 3"
+
+[node name="reload key" type="Label" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "R"
+
+[node name="reload key2" type="Label" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "I
+"

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctfwn6gsr45c0"]
+
+[ext_resource type="Script" path="res://weapons/Bullets/scripts/flame_dot_giver.gd" id="1_802wh"]
+[ext_resource type="PackedScene" uid="uid://dg2qhpfsv81wt" path="res://weapons/Bullets/scenes/flame_dot.tscn" id="2_wwrol"]
+
+[node name="flame_dot_giver_base" type="Area2D" node_paths=PackedStringArray("collision")]
+collision_layer = 4
+collision_mask = 4
+monitorable = false
+script = ExtResource("1_802wh")
+flame_particle_scene = ExtResource("2_wwrol")
+collision = NodePath("")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

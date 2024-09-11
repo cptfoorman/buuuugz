@@ -1,0 +1,168 @@
+[gd_scene load_steps=6 format=3 uid="uid://cpqurfhsn6ay5"]
+
+[ext_resource type="Script" path="res://levels/difficulty_selector_ui/script/diff_selector_ui.gd" id="1_24ire"]
+[ext_resource type="Texture2D" uid="uid://ckc3q7cdf0e6b" path="res://Assets/icons/mantitshead.png" id="1_et0s1"]
+[ext_resource type="Texture2D" uid="uid://dgu588umvuu44" path="res://Assets/characters/enemies/eggos.png" id="3_oftsf"]
+[ext_resource type="Texture2D" uid="uid://cg2rffivi26ic" path="res://Assets/characters/enemies/chrobus_head.png" id="3_uq2v8"]
+[ext_resource type="Texture2D" uid="uid://2tq867anudta" path="res://Assets/weapons/items/c4.png" id="5_a8fd0"]
+
+[node name="diff_selector" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchor_right = 1.004
+anchor_bottom = 1.0
+offset_right = 0.391968
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 1
+mouse_filter = 2
+script = ExtResource("1_24ire")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.017
+anchor_right = 0.987
+anchor_bottom = 0.977
+offset_left = -0.570001
+offset_top = -0.0160007
+offset_right = 0.0408936
+offset_bottom = -0.0960083
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="exit" type="Button" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "X"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -154.5
+offset_top = -88.5
+offset_right = 154.5
+offset_bottom = 88.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 30
+
+[node name="current_enemies" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="Label" type="Label" parent="VBoxContainer/current_enemies"]
+layout_mode = 2
+text = "Enemy types: "
+
+[node name="mantis" type="TextureRect" parent="VBoxContainer/current_enemies"]
+visible = false
+layout_mode = 2
+texture = ExtResource("1_et0s1")
+
+[node name="redmantis" type="TextureRect" parent="VBoxContainer/current_enemies"]
+visible = false
+self_modulate = Color(1, 0, 0.027451, 1)
+layout_mode = 2
+texture = ExtResource("1_et0s1")
+
+[node name="chrobus" type="TextureRect" parent="VBoxContainer/current_enemies"]
+visible = false
+layout_mode = 2
+texture = ExtResource("3_uq2v8")
+
+[node name="bughole_amount" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="Label" type="Label" parent="VBoxContainer/bughole_amount"]
+layout_mode = 2
+text = "Bughole count:"
+
+[node name="bughole_amount" type="Label" parent="VBoxContainer/bughole_amount"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "00"
+
+[node name="objective_type" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="Label" type="Label" parent="VBoxContainer/objective_type"]
+layout_mode = 2
+text = "Objective:"
+
+[node name="objective_eggs_texture" type="TextureRect" parent="VBoxContainer/objective_type"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = ExtResource("3_oftsf")
+expand_mode = 3
+stretch_mode = 3
+
+[node name="objective_eggs_description" type="Label" parent="VBoxContainer/objective_type"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Lets make an omelete! Stomp, shoot ,
+ burn, smash, add a little bit of pepper. No C4 though
+ - we dont want those eggs scrambled."
+
+[node name="objective_2_texture" type="TextureRect" parent="VBoxContainer/objective_type"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("5_a8fd0")
+stretch_mode = 3
+
+[node name="objective_2_description" type="Label" parent="VBoxContainer/objective_type"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Blow up those bugholes!
+ If you dont have any C4 go to the C-Poor machine 
+and pay with heads for your incompetence "
+
+[node name="current difficulty" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 23
+
+[node name="Label" type="Label" parent="VBoxContainer/current difficulty"]
+layout_mode = 2
+text = "Current Dificulty"
+
+[node name="current_dificulty_count" type="Label" parent="VBoxContainer/current difficulty"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "00"
+
+[node name="diff_up_down" type="VBoxContainer" parent="VBoxContainer/current difficulty"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="diff_up" type="Button" parent="VBoxContainer/current difficulty/diff_up_down"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "dif up"
+
+[node name="diff_down" type="Button" parent="VBoxContainer/current difficulty/diff_up_down"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "dif down"
+
+[node name="embark" type="Button" parent="VBoxContainer/current difficulty"]
+layout_mode = 2
+text = "EMBARK"
+
+[connection signal="pressed" from="PanelContainer/exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="VBoxContainer/current difficulty/diff_up_down/diff_up" to="." method="_on_diff_up_pressed"]
+[connection signal="pressed" from="VBoxContainer/current difficulty/diff_up_down/diff_down" to="." method="_on_diff_down_pressed"]
+[connection signal="pressed" from="VBoxContainer/current difficulty/embark" to="." method="_on_embark_pressed"]

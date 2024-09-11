@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://gtsg20kv34gi"
+path="res://.godot/imported/shotgun cockback.mp3-013564e2620040cf89419eeac41b10ff.mp3str"
+
+[deps]
+
+source_file="res://Assets/weapons/sfx/shotgun cockback.mp3"
+dest_files=["res://.godot/imported/shotgun cockback.mp3-013564e2620040cf89419eeac41b10ff.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

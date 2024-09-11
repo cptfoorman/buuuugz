@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqlbvgqjy0pwi"]
+
+[ext_resource type="Script" path="res://weapons/weapons/scripts/c_4_hand.gd" id="1_au30a"]
+[ext_resource type="PackedScene" uid="uid://d4gxux0x0yt56" path="res://weapons/Bullets/scenes/c_4.tscn" id="2_56so1"]
+[ext_resource type="AudioStream" uid="uid://c2w21gs1iy0kx" path="res://Assets/weapons/sfx/bomb has been planted.mp3" id="2_l3f15"]
+[ext_resource type="Texture2D" uid="uid://2tq867anudta" path="res://Assets/weapons/items/c4.png" id="3_4srce"]
+
+[node name="c4_hand" type="Node2D" node_paths=PackedStringArray("bomb_plant")]
+script = ExtResource("1_au30a")
+c4_scene = ExtResource("2_56so1")
+bomb_plant = NodePath("AudioStreamPlayer")
+max_ammo = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_l3f15")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4, -1.42109e-14)
+rotation = 1.5708
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_4srce")
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

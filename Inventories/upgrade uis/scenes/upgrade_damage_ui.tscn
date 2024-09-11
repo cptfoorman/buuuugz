@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmn5tux820kdt"]
+
+[ext_resource type="Script" path="res://Inventories/upgrade uis/scripts/upgrade_damage_ui.gd" id="1_yjo7f"]
+[ext_resource type="Script" path="res://Components/strategies/bullets/scripts/BaseStrategy.gd" id="2_0eexq"]
+[ext_resource type="Resource" uid="uid://dtb0obe37tl1t" path="res://Components/strategies/bullets/resources/sizebulletstrategy.tres" id="3_xnq16"]
+[ext_resource type="Resource" uid="uid://cpdr78avlsqtn" path="res://Components/strategies/bullets/resources/speedbulletstrat.tres" id="4_e8y88"]
+[ext_resource type="Resource" uid="uid://dd13lfyu0fv2y" path="res://Components/strategies/bullets/resources/FireDOTbulletstrat.tres" id="5_2cvkv"]
+[ext_resource type="Resource" uid="uid://cx1abrcbblw3t" path="res://Components/strategies/bullets/resources/damagebulletstrat.tres" id="6_dgo5k"]
+
+[node name="UpgradeDamageUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yjo7f")
+strategy_array = Array[ExtResource("2_0eexq")]([ExtResource("3_xnq16"), ExtResource("4_e8y88"), ExtResource("5_2cvkv"), ExtResource("6_dgo5k")])
+spawn_count = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -432.0
+offset_top = -202.5
+offset_right = 432.0
+offset_bottom = 202.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2

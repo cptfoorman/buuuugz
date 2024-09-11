@@ -1,0 +1,341 @@
+[gd_scene load_steps=16 format=3 uid="uid://dlmhmbq85qxvg"]
+
+[ext_resource type="Script" path="res://weapons/weapons/scripts/las_smg.gd" id="1_0o5xf"]
+[ext_resource type="PackedScene" uid="uid://be127jsqfogvf" path="res://weapons/Bullets/scenes/laser_shot_small.tscn" id="2_dik0b"]
+[ext_resource type="Texture2D" uid="uid://r832mlqjbvpe" path="res://Assets/weapons/flashes/las weapons muzzle flash.png" id="2_j2quw"]
+[ext_resource type="Texture2D" uid="uid://ccdhq38yporbp" path="res://Assets/weapons/newweaponsprites/las_smgmag.png" id="3_7cgcx"]
+[ext_resource type="AudioStream" uid="uid://r7memfoex4iv" path="res://Assets/weapons/sfx/laser_rifle.mp3" id="4_26a7c"]
+[ext_resource type="Script" path="res://Components/Scripts/cam_shake_area.gd" id="5_bp8jg"]
+[ext_resource type="Texture2D" uid="uid://cv6ktt71qrcon" path="res://Assets/weapons/newweaponsprites/las_smgnomag.png" id="5_k72tf"]
+[ext_resource type="AudioStream" uid="uid://bm0rqfeeutpsu" path="res://Assets/weapons/sfx/reloads/smgs2.mp3" id="6_dwkrw"]
+[ext_resource type="Texture2D" uid="uid://batc13nscy3yb" path="res://Assets/weapons/mags/laser_weapon_magback.png" id="7_l3wbm"]
+[ext_resource type="Texture2D" uid="uid://b51f2fyl5jvu8" path="res://Assets/weapons/mags/laser_weapon_magfill.png" id="8_f33py"]
+[ext_resource type="Texture2D" uid="uid://brh0nr23hsooo" path="res://Assets/weapons/newweaponsprites/pielothand.png" id="12_l70b4"]
+[ext_resource type="Texture2D" uid="uid://bkn3yy1js4iaj" path="res://Assets/weapons/newweaponsprites/pielothandright.png" id="13_stxdb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pg2w0"]
+
+[sub_resource type="Animation" id="Animation_323jk"]
+resource_name = "reload"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pielothandright:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4, 0.566667, 0.8, 0.933333, 0.966667, 1.2, 1.33333, 1.46667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(22, 5), Vector2(22, 5), Vector2(19, 7), Vector2(23, 2), Vector2(27, 5), Vector2(-1.90735e-06, 10), Vector2(-8, 0), Vector2(-8, 0), Vector2(21, 17), Vector2(23, 3), Vector2(22, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pielothandright:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4, 0.566667, 0.8, 0.933333, 0.966667, 1.2, 1.36667, 1.46667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-1.84132, -1.84132, -0.794125, -0.794125, -0.310669, 1.46084, 2.26718, 2.26718, 0.736529, -0.938987, -1.84132]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LasSmgmag2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.966667, 1.2, 1.33333, 1.46667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(6, -6), Vector2(9, 13), Vector2(9, 13), Vector2(32, -3), Vector2(4, -7), Vector2(6, -6)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LasSmgmag2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.966667, 1.2, 1.33333, 1.46667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 2.68083, 2.68083, 1.08909, -0.483456, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LasSmgmag:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.366667, 0.566667, 0.633333, 0.8, 1.03333, 1.26667, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(6, -6), Vector2(6, -6), Vector2(6, -6), Vector2(11, -8), Vector2(20, -8), Vector2(20, -8), Vector2(53, -0.999998), Vector2(76, 16), Vector2(76, 16), Vector2(6, -6)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LasSmgmag:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.366667, 0.566667, 0.633333, 0.8, 1.03333, 1.26667, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.483456, -0.483456, -0.232129, 0.102974, 0.102974, 0.689405, 1.44339, 1.44339, 0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite2D:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.2, 1.26667, 1.43333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(12, 3), Vector2(12, -3), Vector2(12, -3), Vector2(12, 3)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sprite2D:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.2, 1.26667, 1.43333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.483456, -0.483456, 0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Pielothand:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 7), Vector2(5, 7)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Pielothand:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.410152, -0.153589]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("LasSmgmag2:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.0666667, 0.166667, 0.7, 0.933333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0.980392)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("LasSmgmag2:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0.0666667, 0.6, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("LasSmgmag:modulate")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0.0666667, 0.633333, 1.13333, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("LasSmgmag:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0.0333333, 1.1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("AudioStreamPlayer2:playing")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_72e0p"]
+_data = {
+"reload": SubResource("Animation_323jk")
+}
+
+[node name="LasScorpion" type="Node2D" node_paths=PackedStringArray("camshake", "recoil_timer", "shot_timer", "shot_sound", "bullet_spawn_marker", "mag_bar", "reload_sound", "sprite", "muzzle_flash")]
+script = ExtResource("1_0o5xf")
+camshake = NodePath("CamShakeArea")
+pitch_upper = 2.5
+pitch_lower = 2.0
+recoil_top = 0.1
+recoil_timer = NodePath("Timer2")
+recoil_str = 0.01
+shot_timer = NodePath("Timer")
+bullet = ExtResource("2_dik0b")
+bullet_speed = 800.0
+bullet_damage = 10.0
+shot_sound = NodePath("AudioStreamPlayer")
+bullet_spawn_marker = NodePath("Marker2D")
+max_ammo = 35
+mag_bar = NodePath("CanvasLayer/Control/TextureProgressBar")
+reload_time = 1.5
+reload_sound = NodePath("AudioStreamPlayer2")
+sprite = NodePath("Sprite2D")
+muzzle_flash = NodePath("Sprite2D2")
+
+[node name="LasSmgmag" type="Sprite2D" parent="."]
+position = Vector2(6, -6)
+scale = Vector2(0.83, 0.916667)
+texture = ExtResource("3_7cgcx")
+
+[node name="LasSmgmag2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(6, -6)
+scale = Vector2(0.83, 0.916667)
+texture = ExtResource("3_7cgcx")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(41, 3.55271e-15)
+scale = Vector2(0.545, 0.41)
+texture = ExtResource("2_j2quw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(12, 3)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_k72tf")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(36, 0)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.08
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_dwkrw")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_26a7c")
+pitch_scale = 2.0
+
+[node name="CamShakeArea" type="Area2D" parent="." node_paths=PackedStringArray("collision")]
+script = ExtResource("5_bp8jg")
+collision = NodePath("CollisionShape2D")
+shake_strenght = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CamShakeArea"]
+shape = SubResource("CircleShape2D_pg2w0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchor_left = 0.003
+anchor_top = 0.884
+anchor_right = 0.085
+anchor_bottom = 1.0
+offset_left = 666.544
+offset_top = 5.16797
+offset_right = 667.08
+offset_bottom = 4.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -30.0
+offset_right = 20.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 80.0
+value = 80.0
+fill_mode = 2
+texture_under = ExtResource("7_l3wbm")
+texture_progress = ExtResource("8_f33py")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -171.0
+offset_top = -288.0
+offset_right = 12.0
+offset_bottom = -233.0
+scale = Vector2(0.4, 0.4)
+theme_override_font_sizes/font_size = 40
+text = "reloading"
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="Pielothand" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(2, 7)
+rotation = 0.410152
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("12_l70b4")
+
+[node name="Pielothandright" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+z_index = -1
+position = Vector2(22, 5)
+rotation = -1.84132
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("13_stxdb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_72e0p")
+}
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="CamShakeArea" to="CamShakeArea" method="_on_body_entered"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

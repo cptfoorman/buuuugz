@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bk3624j1y5ytc"]
+
+[ext_resource type="Script" path="res://Inventories/upgrade uis/scenes/strategy_giver.gd" id="1_v1y7t"]
+
+[node name="strategy_giver" type="Button"]
+process_mode = 3
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_v1y7t")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

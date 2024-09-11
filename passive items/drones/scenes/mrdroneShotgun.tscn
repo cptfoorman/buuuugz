@@ -1,0 +1,144 @@
+[gd_scene load_steps=17 format=3 uid="uid://dbc3ntkx7wa27"]
+
+[ext_resource type="Script" path="res://passive items/drones/scenes/mrdrone_shotgun.gd" id="1_rmig1"]
+[ext_resource type="PackedScene" uid="uid://clco5q2t5kr5" path="res://weapons/Bullets/scenes/bullet_balistic.tscn" id="2_moeqe"]
+[ext_resource type="PackedScene" uid="uid://3vy1f34wcqnd" path="res://Components/Scenes/npc_nav.tscn" id="3_lhex4"]
+[ext_resource type="Texture2D" uid="uid://r832mlqjbvpe" path="res://Assets/weapons/flashes/las weapons muzzle flash.png" id="4_h51dd"]
+[ext_resource type="Texture2D" uid="uid://dltjqkcoj8c6l" path="res://Assets/weapons/shotgun.png" id="5_30p5y"]
+[ext_resource type="AudioStream" uid="uid://dbg28lemw33pq" path="res://Assets/weapons/sfx/shotgun_balistic.mp3" id="7_8txv2"]
+[ext_resource type="Texture2D" uid="uid://woqnmdt3uy75" path="res://Assets/characters/player/mrdroney-Sheet.png" id="7_j7f8l"]
+[ext_resource type="AudioStream" uid="uid://be45y76k4yhax" path="res://Assets/weapons/sfx/drones/droneflight.mp3" id="10_wd3rm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mnw0d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmseg"]
+atlas = ExtResource("7_j7f8l")
+region = Rect2(0, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6dky"]
+atlas = ExtResource("7_j7f8l")
+region = Rect2(60, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0oul"]
+atlas = ExtResource("7_j7f8l")
+region = Rect2(120, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_duvo7"]
+atlas = ExtResource("7_j7f8l")
+region = Rect2(180, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_te2oy"]
+atlas = ExtResource("7_j7f8l")
+region = Rect2(240, 0, 60, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qjfmp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qmseg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6dky")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0oul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_duvo7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_te2oy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cxrdb"]
+radius = 440.056
+
+[node name="mrdrone" type="CharacterBody2D" node_paths=PackedStringArray("shot_timer", "bullet_spawn_marker", "shot_marker", "nav_marker", "navigator", "ofscreen_reset", "visibilitynotifier")]
+collision_layer = 0
+script = ExtResource("1_rmig1")
+bullet = ExtResource("2_moeqe")
+shot_timer = NodePath("shot_timer")
+bullet_speed = 500.0
+bullet_damage = 20.0
+bullet_spawn_marker = NodePath("hands/Marker2D")
+shot_marker = NodePath("Marker2D2")
+speed = 260.0
+nav_marker = NodePath("player_marker")
+navigator = NodePath("NpcNav")
+ofscreen_reset = NodePath("Timer")
+visibilitynotifier = NodePath("VisibleOnScreenNotifier2D")
+drone_type = 2
+
+[node name="NpcNav" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("3_lhex4")]
+unique_name_in_owner = true
+entity = NodePath("..")
+
+[node name="Timer" type="Timer" parent="NpcNav"]
+wait_time = 0.3
+
+[node name="hands" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mnw0d")
+
+[node name="Marker2D" type="Marker2D" parent="hands"]
+position = Vector2(33, -1)
+
+[node name="muzzleflash" type="Sprite2D" parent="hands/Marker2D"]
+unique_name_in_owner = true
+visible = false
+self_modulate = Color(1, 1, 1, 0.843137)
+position = Vector2(0, -1)
+scale = Vector2(0.8325, 0.56)
+texture = ExtResource("4_h51dd")
+
+[node name="SpaceAr" type="Sprite2D" parent="hands"]
+position = Vector2(-3, 6)
+scale = Vector2(0.796875, 0.78125)
+texture = ExtResource("5_30p5y")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="hands"]
+sprite_frames = SubResource("SpriteFrames_qjfmp")
+autoplay = "default"
+frame_progress = 0.360063
+flip_h = true
+
+[node name="enemy_detection" type="Area2D" parent="."]
+collision_mask = 257
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_detection"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_cxrdb")
+
+[node name="shot_timer" type="Timer" parent="."]
+wait_time = 1.2
+
+[node name="Marker2D2" type="Marker2D" parent="."]
+
+[node name="player_marker" type="Marker2D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_8txv2")
+volume_db = -3.0
+pitch_scale = 0.8
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("10_wd3rm")
+parameters/looping = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+
+[connection signal="timeout" from="NpcNav/Timer" to="NpcNav" method="_on_timer_timeout"]
+[connection signal="body_entered" from="enemy_detection" to="." method="_on_enemy_detection_body_entered"]
+[connection signal="body_exited" from="enemy_detection" to="." method="_on_enemy_detection_body_exited"]
+[connection signal="timeout" from="shot_timer" to="." method="_on_shot_timer_timeout"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

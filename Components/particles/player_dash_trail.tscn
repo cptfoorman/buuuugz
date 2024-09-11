@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://k08ro8mhndbx"]
+
+[ext_resource type="Texture2D" uid="uid://dtslooypco7lw" path="res://Assets/particles/pielot.png" id="1_ng2k5"]
+[ext_resource type="Script" path="res://Components/particles/particle.gd" id="2_lc3kd"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_svwvk"]
+particle_flag_disable_z = true
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+angular_velocity_min = -106.36
+angular_velocity_max = -106.36
+gravity = Vector3(-98, 0, 0)
+
+[node name="player_dash_trail" type="GPUParticles2D"]
+self_modulate = Color(0.886275, 0.929412, 1, 0.215686)
+emitting = false
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_svwvk")
+texture = ExtResource("1_ng2k5")
+lifetime = 0.5
+one_shot = true
+script = ExtResource("2_lc3kd")

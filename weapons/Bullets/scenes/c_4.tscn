@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://d4gxux0x0yt56"]
+
+[ext_resource type="Script" path="res://weapons/Bullets/scripts/c_4.gd" id="1_ugdte"]
+[ext_resource type="Texture2D" uid="uid://2tq867anudta" path="res://Assets/weapons/items/c4.png" id="2_d2x0t"]
+[ext_resource type="AudioStream" uid="uid://byfvdurx2w18o" path="res://Assets/weapons/sfx/bomb_beep.mp3" id="3_0d38n"]
+[ext_resource type="AudioStream" uid="uid://d7epavsnj0gw" path="res://Assets/weapons/sfx/beep_agressive.mp3" id="4_ujbkp"]
+[ext_resource type="AudioStream" uid="uid://dxn2f6ss65yte" path="res://Assets/weapons/sfx/medium-explosion-40472.mp3" id="5_e00mi"]
+[ext_resource type="PackedScene" uid="uid://dquao4owyq343" path="res://Components/particles/explosion.tscn" id="6_u4dxh"]
+[ext_resource type="Script" path="res://Components/Scripts/hurtbox_component.gd" id="7_2h4f5"]
+[ext_resource type="Script" path="res://Components/Scripts/cam_shake_area.gd" id="8_80b5y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6lrwg"]
+radius = 331.097
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ay22b"]
+radius = 2128.11
+
+[node name="c4" type="Node2D" node_paths=PackedStringArray("countdown_timer1", "countdown_timer2", "hurtbox", "particles", "bomb_beep", "bomb_beep_aggro", "bomb_explosion", "sprite", "cam_shake")]
+scale = Vector2(0.2, 0.2)
+script = ExtResource("1_ugdte")
+countdown_timer1 = NodePath("Timer")
+countdown_timer2 = NodePath("Timer2")
+hurtbox = NodePath("HurtboxComponent")
+particles = NodePath("GPUParticles2D")
+bomb_beep = NodePath("AudioStreamPlayer")
+bomb_beep_aggro = NodePath("AudioStreamPlayer2")
+bomb_explosion = NodePath("AudioStreamPlayer3")
+sprite = NodePath("Sprite2D")
+cam_shake = NodePath("CamShakeArea")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_d2x0t")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_0d38n")
+volume_db = 5.0
+parameters/looping = true
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ujbkp")
+volume_db = 5.0
+parameters/looping = true
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_e00mi")
+
+[node name="GPUParticles2D" parent="." instance=ExtResource("6_u4dxh")]
+
+[node name="HurtboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("collision")]
+collision_layer = 12
+collision_mask = 0
+script = ExtResource("7_2h4f5")
+damage = 250.0
+collision = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+shape = SubResource("CircleShape2D_6lrwg")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="CamShakeArea" type="Area2D" parent="." node_paths=PackedStringArray("collision")]
+script = ExtResource("8_80b5y")
+collision = NodePath("CollisionShape2D")
+shake_strenght = 30.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CamShakeArea"]
+shape = SubResource("CircleShape2D_ay22b")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
+[connection signal="body_entered" from="CamShakeArea" to="CamShakeArea" method="_on_body_entered"]

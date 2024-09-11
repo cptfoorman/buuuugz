@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://bv0laxyis7ncf"]
+
+[ext_resource type="Texture2D" uid="uid://83r6n141y0ij" path="res://Assets/weapons/lmg.png" id="1_50o22"]
+[ext_resource type="PackedScene" uid="uid://dkg7qj1lsktc5" path="res://weapons/weapons/scenes/LMG.tscn" id="2_kxdm6"]
+[ext_resource type="Script" path="res://Inventories/scripts/Item.gd" id="3_gjf05"]
+
+[resource]
+script = ExtResource("3_gjf05")
+item_name = "LMG"
+item_scene = ExtResource("2_kxdm6")
+item_icon = ExtResource("1_50o22")
+amount = 0
+stackable = false
+item_type = 0
+item_value = 1000
+is_c4 = false

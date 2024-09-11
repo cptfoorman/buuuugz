@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dg2qhpfsv81wt"]
+
+[ext_resource type="Texture2D" uid="uid://d130gect6ljeq" path="res://Assets/particles/flame_particle_solo.png" id="1_onu2i"]
+[ext_resource type="Script" path="res://weapons/Bullets/scripts/flame_dot.gd" id="2_mua6w"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cw0sf"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(20, 20, 1)
+gravity = Vector3(0, -98, 0)
+
+[node name="flame_dot" type="GPUParticles2D"]
+amount = 24
+process_material = SubResource("ParticleProcessMaterial_cw0sf")
+texture = ExtResource("1_onu2i")
+script = ExtResource("2_mua6w")

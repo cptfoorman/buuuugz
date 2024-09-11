@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://cd16jdergk7fm"]
+
+[ext_resource type="Script" path="res://Inventories/on_foot_weapon_ui/weapon_ui.gd" id="1_kl2js"]
+[ext_resource type="PackedScene" uid="uid://b6lqwcp61andy" path="res://Inventories/on_foot_weapon_ui/weapon_display.tscn" id="2_3x2rn"]
+[ext_resource type="PackedScene" uid="uid://cllewee35woa5" path="res://Components/Scenes/item_dispenser_pickup.tscn" id="3_rd3wi"]
+
+[node name="WeaponUI" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kl2js")
+weapon_slot = ExtResource("2_3x2rn")
+item_dispenser = ExtResource("3_rd3wi")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="backpack" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "backpack"
+
+[node name="exit_button" type="Button" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "x"
+
+[node name="backpack_container" type="GridContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 80
+columns = 6
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="belt" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "belt"
+
+[node name="belt_container" type="GridContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 150
+columns = 3
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/exit_button" to="." method="_on_exit_button_pressed"]

@@ -1,0 +1,218 @@
+[gd_scene load_steps=36 format=3 uid="uid://nu2572yiwcxs"]
+
+[ext_resource type="Script" path="res://levels/scene Manager/level_manager.gd" id="1_mihhd"]
+[ext_resource type="PackedScene" uid="uid://chupdtawwqork" path="res://Tests/test_1.tscn" id="2_npu41"]
+[ext_resource type="PackedScene" uid="uid://hthuc5b8gcri" path="res://Tests/test_3.tscn" id="4_2tinm"]
+[ext_resource type="PackedScene" uid="uid://bmdtcrwidv3rl" path="res://Tests/test_2.tscn" id="4_sr2sk"]
+[ext_resource type="Texture2D" uid="uid://bi1fp28kwfy53" path="res://Assets/icons/kosmonaut.png" id="5_g0alh"]
+[ext_resource type="PackedScene" uid="uid://c2jwavvf5pqwh" path="res://enemies/scenes/spawner.tscn" id="5_xb6uc"]
+[ext_resource type="PackedScene" uid="uid://dspyqd3wanmt2" path="res://enemies/scenes/mantits.tscn" id="6_8qsn3"]
+[ext_resource type="AudioStream" uid="uid://d0p04dwwq4oaq" path="res://Assets/weapons/sfx/music/123123.mp3" id="6_ku0rs"]
+[ext_resource type="AudioStream" uid="uid://bnh5ye1w8c5hj" path="res://Assets/weapons/sfx/music/banger.mp3" id="6_nxwc2"]
+[ext_resource type="AudioStream" uid="uid://jqd6ii4egm0l" path="res://Assets/weapons/sfx/music/pivobuhatnevredno.mp3" id="7_nbae2"]
+[ext_resource type="PackedScene" uid="uid://dmnug2gjghian" path="res://enemies/scenes/redmantits.tscn" id="7_xf7eh"]
+[ext_resource type="PackedScene" uid="uid://bvdjb26e3hqer" path="res://enemies/scenes/chrobus.tscn" id="8_2nm37"]
+[ext_resource type="PackedScene" uid="uid://dpy1cdk0kkduh" path="res://levels/objectives/scenes/egg_objective.tscn" id="8_lvkje"]
+[ext_resource type="PackedScene" uid="uid://58m0nnh3dwvg" path="res://levels/objectives/scenes/shiny_rock.tscn" id="9_dyug4"]
+[ext_resource type="PackedScene" uid="uid://cpqurfhsn6ay5" path="res://levels/difficulty_selector_ui/scene/diff_selector_ui.tscn" id="9_ov1ue"]
+[ext_resource type="PackedScene" uid="uid://bx453n7bpnmwn" path="res://levels/objectives/scenes/cpoor.tscn" id="9_r5q2j"]
+[ext_resource type="PackedScene" uid="uid://c3a185jh8l2rs" path="res://passive items/shields/scenes/shield.tscn" id="12_jnjwa"]
+[ext_resource type="PackedScene" uid="uid://tuw0q4buyv6h" path="res://levels/difficulty_selector_ui/scene/exit_mission_ui.tscn" id="15_1qx6y"]
+[ext_resource type="PackedScene" uid="uid://cmn5tux820kdt" path="res://Inventories/upgrade uis/scenes/upgrade_damage_ui.tscn" id="15_8b5tj"]
+[ext_resource type="Texture2D" uid="uid://3ueok8kcckks" path="res://Assets/icons/spawnsincreased.png" id="15_s8pcw"]
+[ext_resource type="PackedScene" uid="uid://c6uabm3p7d47d" path="res://levels/scene Manager/score_timer_control.tscn" id="16_vgxua"]
+[ext_resource type="PackedScene" uid="uid://co1afosyuputv" path="res://passive items/menu/item_upgrade_menu.tscn" id="17_c50y8"]
+[ext_resource type="Script" path="res://Components/strategies/bullets/scripts/BaseStrategy.gd" id="17_xrcq6"]
+[ext_resource type="Resource" uid="uid://dtb0obe37tl1t" path="res://Components/strategies/bullets/resources/sizebulletstrategy.tres" id="18_nmmi3"]
+[ext_resource type="Resource" uid="uid://cpdr78avlsqtn" path="res://Components/strategies/bullets/resources/speedbulletstrat.tres" id="19_xdkmw"]
+[ext_resource type="Resource" uid="uid://dd13lfyu0fv2y" path="res://Components/strategies/bullets/resources/FireDOTbulletstrat.tres" id="20_2smhl"]
+[ext_resource type="Resource" uid="uid://cx1abrcbblw3t" path="res://Components/strategies/bullets/resources/damagebulletstrat.tres" id="21_a4bsn"]
+[ext_resource type="Resource" uid="uid://bvqt8dwrbiik2" path="res://Components/strategies/bullets/resources/ElectricSlowbulletstrat.tres" id="22_noofp"]
+[ext_resource type="Resource" uid="uid://cqkj4wh8f7vhu" path="res://Components/strategies/bullets/resources/piercingbulletstrat.tres" id="23_egplu"]
+
+[sub_resource type="Animation" id="Animation_s66ci"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/TextureRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.966667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/TextureRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_2w2jr"]
+resource_name = "fade_out"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/TextureRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1.36667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/TextureRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 1.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_x3f0c"]
+resource_name = "spawns_increased"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/TextureRect2:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.133333, 0.966667, 1.93333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/TextureRect2")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 1.9),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"show"
+}, {
+"args": [],
+"method": &"hide"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o1qh0"]
+_data = {
+"fade_in": SubResource("Animation_s66ci"),
+"fade_out": SubResource("Animation_2w2jr"),
+"spawns_increased": SubResource("Animation_x3f0c")
+}
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_2gagr"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_bajmm"]
+fade_time = 0.1
+stream_count = 4
+stream_0 = SubResource("AudioStreamPlaylist_2gagr")
+stream_1 = ExtResource("6_nxwc2")
+stream_2 = ExtResource("6_ku0rs")
+stream_3 = ExtResource("7_nbae2")
+
+[node name="LevelManager" type="Node" node_paths=PackedStringArray("difficulty_timeout", "soundtrack") groups=["manager"]]
+script = ExtResource("1_mihhd")
+test1_scene = ExtResource("2_npu41")
+level_scenes = Array[PackedScene]([ExtResource("4_2tinm"), ExtResource("4_sr2sk")])
+difficulty_timeout = NodePath("Timer")
+spawner_scene = ExtResource("5_xb6uc")
+mantis_scene = ExtResource("6_8qsn3")
+mantis_red_scene = ExtResource("7_xf7eh")
+chrobus_scene = ExtResource("8_2nm37")
+shinyrock = ExtResource("9_dyug4")
+eggs_objective = ExtResource("8_lvkje")
+c_poor_objective = ExtResource("9_r5q2j")
+soundtrack = NodePath("AudioStreamPlayer")
+basic_shield = ExtResource("12_jnjwa")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+process_mode = 3
+libraries = {
+"": SubResource("AnimationLibrary_o1qh0")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = SubResource("AudioStreamPlaylist_bajmm")
+volume_db = -5.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 30.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+self_modulate = Color(1, 1, 1, 0)
+top_level = true
+z_index = 20
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -24.0
+offset_top = -22.0
+offset_right = 22.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_g0alh")
+stretch_mode = 3
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+top_level = true
+offset_left = 202.0
+offset_top = -84.0
+offset_right = 1002.0
+offset_bottom = 316.0
+texture = ExtResource("15_s8pcw")
+
+[node name="item_upgrade_menu" parent="CanvasLayer" instance=ExtResource("17_c50y8")]
+unique_name_in_owner = true
+
+[node name="Score_timer_control" parent="CanvasLayer" instance=ExtResource("16_vgxua")]
+
+[node name="UpgradeDamageUI" parent="CanvasLayer" instance=ExtResource("15_8b5tj")]
+process_mode = 3
+visible = false
+strategy_array = Array[ExtResource("17_xrcq6")]([ExtResource("18_nmmi3"), ExtResource("19_xdkmw"), ExtResource("20_2smhl"), ExtResource("21_a4bsn"), ExtResource("22_noofp"), ExtResource("23_egplu")])
+spawn_count = 6
+
+[node name="diff_selector" parent="CanvasLayer" instance=ExtResource("9_ov1ue")]
+unique_name_in_owner = true
+visible = false
+mouse_filter = 0
+
+[node name="ExitMissionUI" parent="CanvasLayer" instance=ExtResource("15_1qx6y")]
+unique_name_in_owner = true
+visible = false
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="DifficultySet" from="CanvasLayer/diff_selector" to="." method="_on_diff_selector_difficulty_set"]
+[connection signal="EXITLEVEL" from="CanvasLayer/ExitMissionUI" to="." method="_on_exit_mission_ui_exitlevel"]

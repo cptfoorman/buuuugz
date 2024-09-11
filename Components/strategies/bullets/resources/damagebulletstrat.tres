@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="DamageBulletStrategy" load_steps=3 format=3 uid="uid://cx1abrcbblw3t"]
+
+[ext_resource type="Script" path="res://Components/strategies/bullets/scripts/damagebulletstrat.gd" id="1_2ypgp"]
+[ext_resource type="Texture2D" uid="uid://cxj7lrbhxpi1g" path="res://Assets/icons/attackup.png" id="2_m0l2w"]
+
+[resource]
+script = ExtResource("1_2ypgp")
+damage_buff = 5
+texture = ExtResource("2_m0l2w")
+strategy_name = "Bullet Damage Up"

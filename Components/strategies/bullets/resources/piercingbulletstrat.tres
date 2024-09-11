@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="PiercingBulletStrategy" load_steps=2 format=3 uid="uid://cqkj4wh8f7vhu"]
+
+[ext_resource type="Script" path="res://Components/strategies/bullets/scripts/piercingbulletStrategy.gd" id="1_tvjvn"]
+
+[resource]
+script = ExtResource("1_tvjvn")
+piercing_buff = 1
+strategy_name = "PiercingBulletsUP"

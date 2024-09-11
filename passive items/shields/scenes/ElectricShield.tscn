@@ -1,0 +1,122 @@
+[gd_scene load_steps=13 format=3 uid="uid://bxeg65j47htqu"]
+
+[ext_resource type="Script" path="res://passive items/shields/scripts/FireShield.gd" id="1_yk1nv"]
+[ext_resource type="PackedScene" uid="uid://bwjuiy5l83ypp" path="res://weapons/Bullets/scenes/electric_dot_giver-base.tscn" id="2_qkf2i"]
+[ext_resource type="Script" path="res://Components/Scripts/health_component.gd" id="3_phliy"]
+[ext_resource type="Script" path="res://Components/Scripts/hitbox_component.gd" id="4_6vmp6"]
+[ext_resource type="Texture2D" uid="uid://drluxf5s35lqe" path="res://Assets/weapons/items/shieldoverlay-Sheet.png" id="5_ofu0b"]
+[ext_resource type="Texture2D" uid="uid://cyy46ekrlfctr" path="res://Assets/icons/shieldbar.png" id="6_6558p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_au76f"]
+radius = 74.0068
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x2f41"]
+radius = 23.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hd4b"]
+atlas = ExtResource("5_ofu0b")
+region = Rect2(0, 0, 50, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lg34h"]
+atlas = ExtResource("5_ofu0b")
+region = Rect2(50, 0, 50, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5s0e8"]
+atlas = ExtResource("5_ofu0b")
+region = Rect2(100, 0, 50, 47)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s0p1a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3hd4b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lg34h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5s0e8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Electroshield" type="Node2D" node_paths=PackedStringArray("dot_giver", "shield_health", "shield_hb", "shield_recharge_time", "animated_sprite")]
+script = ExtResource("1_yk1nv")
+dot_giver = NodePath("Electric_dot_giver")
+shield_health = NodePath("HealthComponent")
+shield_hb = NodePath("HitboxComponent")
+ShieldHPStatus = 1
+shield_recharge_time = NodePath("Timer")
+animated_sprite = NodePath("AnimatedSprite2D")
+shield_type_number = 3
+
+[node name="Electric_dot_giver" parent="." node_paths=PackedStringArray("collision") instance=ExtResource("2_qkf2i")]
+collision = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Electric_dot_giver"]
+shape = SubResource("CircleShape2D_au76f")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("3_phliy")
+max_health = 100.0
+health = 100.0
+
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("collision_shape", "health_component")]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("4_6vmp6")
+collision_shape = NodePath("CollisionShape2D")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+visible = false
+shape = SubResource("CircleShape2D_x2f41")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 0, 1)
+sprite_frames = SubResource("SpriteFrames_s0p1a")
+autoplay = "default"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="hpui" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchor_left = 0.41
+anchor_top = 0.921
+anchor_right = 0.59
+anchor_bottom = 0.992
+offset_left = 0.179962
+offset_top = 0.191956
+offset_right = -0.180054
+offset_bottom = 5.18396
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/hpui"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 0, 0.698039)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.289
+anchor_top = -1.072
+anchor_right = -0.135
+anchor_bottom = 0.879
+offset_left = 63.823
+offset_top = 14.672
+offset_right = 431.945
+offset_bottom = -31.829
+grow_horizontal = 2
+grow_vertical = 2
+texture_progress = ExtResource("6_6558p")
+
+[connection signal="IDIED" from="HealthComponent" to="." method="_on_health_component_idied"]
+[connection signal="IGOTHIT" from="HitboxComponent" to="." method="_on_hitbox_component_igothit"]
+[connection signal="area_entered" from="HitboxComponent" to="HitboxComponent" method="_on_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

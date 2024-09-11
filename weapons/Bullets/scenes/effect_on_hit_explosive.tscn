@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4dje8p4a05sl"]
+
+[ext_resource type="Script" path="res://weapons/Bullets/scripts/effect_on_hit_giver.gd" id="1_b3gf2"]
+[ext_resource type="Script" path="res://Components/Scripts/hurtbox_component.gd" id="2_jvncm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_axqck"]
+radius = 40.1995
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_718ib"]
+radius = 5.0
+
+[node name="Effect_on_hit_giver" type="Area2D"]
+script = ExtResource("1_b3gf2")
+
+[node name="HurtboxComponent" type="Area2D" parent="."]
+script = ExtResource("2_jvncm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+shape = SubResource("CircleShape2D_axqck")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(9, 0)
+shape = SubResource("CircleShape2D_718ib")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

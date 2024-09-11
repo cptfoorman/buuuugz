@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://ba2177mow5h83"]
+
+[ext_resource type="Texture2D" uid="uid://dymhsoocvvwwh" path="res://Assets/weapons/space gun.png" id="1_s36p4"]
+[ext_resource type="PackedScene" uid="uid://pb832y8wf0o3" path="res://weapons/weapons/scenes/Las_pistiol.tscn" id="2_5vq1j"]
+[ext_resource type="Script" path="res://Inventories/scripts/Item.gd" id="3_yi1at"]
+
+[resource]
+script = ExtResource("3_yi1at")
+item_name = "LasGlock"
+item_scene = ExtResource("2_5vq1j")
+item_icon = ExtResource("1_s36p4")
+amount = 0
+stackable = false
+item_type = 0
+item_value = 50
+is_c4 = false

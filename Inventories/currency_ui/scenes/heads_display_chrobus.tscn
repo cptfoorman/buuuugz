@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuns0olv50pfw"]
+
+[ext_resource type="Script" path="res://Inventories/currency_ui/scripts/panel_container.gd" id="1_exrnj"]
+[ext_resource type="Texture2D" uid="uid://cg2rffivi26ic" path="res://Assets/characters/enemies/chrobus_head.png" id="2_glt5f"]
+
+[node name="PanelContainer" type="PanelContainer"]
+offset_right = 120.0
+offset_bottom = 53.0
+script = ExtResource("1_exrnj")
+headtype = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_glt5f")
+
+[node name="x" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "X"
+
+[node name="count" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2

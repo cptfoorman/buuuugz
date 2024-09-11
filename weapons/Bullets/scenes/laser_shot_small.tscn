@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://be127jsqfogvf"]
+
+[ext_resource type="Script" path="res://weapons/Bullets/scripts/bulletbase.gd" id="1_lbagn"]
+[ext_resource type="Texture2D" uid="uid://2pvhbrs7mxco" path="res://Assets/weapons/bullets/cloudy bullet.png" id="2_0igni"]
+[ext_resource type="Script" path="res://Components/Scripts/hurtbox_component.gd" id="3_8mav7"]
+[ext_resource type="Script" path="res://Components/Scripts/cam_shake_area.gd" id="4_clnh1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ynp7e"]
+size = Vector2(19, 3)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r6ew6"]
+radius = 11.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5o1qk"]
+size = Vector2(17, 2)
+
+[node name="BulletBase" type="Area2D" node_paths=PackedStringArray("sprite", "hurtbox", "camshake")]
+collision_layer = 4
+collision_mask = 261
+script = ExtResource("1_lbagn")
+sprite = NodePath("Sprite2D")
+hurtbox = NodePath("HurtboxComponent")
+camshake = NodePath("CamShakeArea")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, 0)
+scale = Vector2(0.44, 0.08)
+texture = ExtResource("2_0igni")
+
+[node name="HurtboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("collision")]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("3_8mav7")
+collision = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_ynp7e")
+
+[node name="CamShakeArea" type="Area2D" parent="." node_paths=PackedStringArray("collision")]
+script = ExtResource("4_clnh1")
+collision = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CamShakeArea"]
+position = Vector2(-2, 0)
+shape = SubResource("CircleShape2D_r6ew6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_5o1qk")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-5, 0)
+scale = Vector2(0.6, 0.1)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="CamShakeArea" to="CamShakeArea" method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

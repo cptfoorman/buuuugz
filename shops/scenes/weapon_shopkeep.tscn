@@ -1,0 +1,114 @@
+[gd_scene load_steps=23 format=3 uid="uid://brevpdd8kgolx"]
+
+[ext_resource type="Texture2D" uid="uid://bwk5tkbm0lo" path="res://Assets/characters/shops/shopkeep-weapons-Sheet.png" id="1_epxoq"]
+[ext_resource type="Script" path="res://shops/scripts/weapon_shopkeep.gd" id="1_lfbdl"]
+[ext_resource type="Texture2D" uid="uid://vrpjhcmwfg1d" path="res://Assets/characters/shops/weapon_shop_counter.png" id="2_5o7q1"]
+[ext_resource type="Script" path="res://Inventories/scripts/Item.gd" id="2_mle6w"]
+[ext_resource type="Resource" uid="uid://1uv72u1p3x5g" path="res://weapons/weapons/weapon resources/Laser_Rifle.tres" id="3_ejgl7"]
+[ext_resource type="PackedScene" uid="uid://bjmsw856cv7m2" path="res://Inventories/shop_inventories/weapon_shop/weapon_shop_ui.tscn" id="3_j04y8"]
+[ext_resource type="Resource" uid="uid://8heo8c3c0k3i" path="res://weapons/weapons/weapon resources/Minigun.tres" id="4_2dix4"]
+[ext_resource type="AudioStream" uid="uid://dhc0djtl0hwln" path="res://Assets/weapons/sfx/bahyin.mp3" id="5_c5at2"]
+[ext_resource type="Resource" uid="uid://bv8gfxnsnsroa" path="res://weapons/weapons/weapon resources/Rifle.tres" id="5_glgy3"]
+[ext_resource type="AudioStream" uid="uid://bmxpfigiy4u7h" path="res://Assets/weapons/sfx/whadyawant.mp3" id="6_6lsxm"]
+[ext_resource type="AudioStream" uid="uid://bowvyh3otopsk" path="res://Assets/weapons/sfx/buhye.mp3" id="7_de6ya"]
+[ext_resource type="AudioStream" uid="uid://cs0dpqwokpydg" path="res://Assets/weapons/sfx/hehehe.mp3" id="8_2cwq3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0pxe"]
+atlas = ExtResource("1_epxoq")
+region = Rect2(0, 0, 50, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1dgx"]
+atlas = ExtResource("1_epxoq")
+region = Rect2(50, 0, 50, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7mge"]
+atlas = ExtResource("1_epxoq")
+region = Rect2(100, 0, 50, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftrxw"]
+atlas = ExtResource("1_epxoq")
+region = Rect2(150, 0, 50, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5hlj"]
+atlas = ExtResource("1_epxoq")
+region = Rect2(200, 0, 50, 47)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8lj5g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0pxe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1dgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7mge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftrxw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5hlj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eegag"]
+size = Vector2(76, 30)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tmyvr"]
+radius = 45.0111
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1vxnc"]
+streams_count = 2
+stream_0/stream = ExtResource("7_de6ya")
+stream_1/stream = ExtResource("8_2cwq3")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_sa6xf"]
+streams_count = 2
+stream_0/stream = ExtResource("5_c5at2")
+stream_1/stream = ExtResource("6_6lsxm")
+
+[node name="WeaponShopkeep" type="StaticBody2D"]
+script = ExtResource("1_lfbdl")
+possible_items_array = Array[ExtResource("2_mle6w")]([ExtResource("3_ejgl7"), ExtResource("4_2dix4"), ExtResource("5_glgy3")])
+shopkeep_item_count = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 12)
+texture = ExtResource("2_5o7q1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_8lj5g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 11)
+shape = SubResource("RectangleShape2D_eegag")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 12)
+shape = SubResource("CircleShape2D_tmyvr")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="WeaponShopUI" parent="CanvasLayer" instance=ExtResource("3_j04y8")]
+unique_name_in_owner = true
+visible = false
+
+[node name="bye" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_1vxnc")
+
+[node name="welcome" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_sa6xf")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="ShoppingOver" from="CanvasLayer/WeaponShopUI" to="." method="_on_weapon_shop_ui_shopping_over"]

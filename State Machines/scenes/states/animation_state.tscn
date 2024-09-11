@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://hc0sg403v2xg"]
+
+[ext_resource type="Script" path="res://State Machines/scripts/animation_state.gd" id="1_pgao0"]
+
+[node name="AnimationState" type="Node"]
+script = ExtResource("1_pgao0")

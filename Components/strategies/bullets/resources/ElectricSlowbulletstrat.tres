@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="DOTGiverBulletStrategy" load_steps=3 format=3 uid="uid://bvqt8dwrbiik2"]
+
+[ext_resource type="PackedScene" uid="uid://5baf4aq8ra2" path="res://weapons/Bullets/scenes/electric_dot_giver.tscn" id="1_asv3p"]
+[ext_resource type="Script" path="res://Components/strategies/bullets/scripts/FireDotStrat.gd" id="1_ftty4"]
+
+[resource]
+script = ExtResource("1_ftty4")
+dot_scene = ExtResource("1_asv3p")
+strategy_name = "ElectricBullets"
